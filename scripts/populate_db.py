@@ -1,6 +1,3 @@
-import django
-django.setup()
-
 from VirginiaPrinting.models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord
 
 # Create a Newspaper Citation

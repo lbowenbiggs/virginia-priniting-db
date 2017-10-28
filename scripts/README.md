@@ -4,21 +4,29 @@ Scripts
 This directory is for scripts that are useful in development but inappropriate for deployment.
 
 # populate_db.py
-Run this in a python prompt to populate the database with some objects.
+This will populate the database with 4 objects (one for each model) to use for testing.
 
-Make sure you are in the django virtual environment, have updated the database to the correct version, and have the `DJANGO_SETTINGS_MODULE` environment variable set to `VPDB.settings`.
+To run from PyCharm, open the python console (under 'Tools', or by 'Tools'>'Run manage.py Task...' and typing ```shell```) and run the following command:
+```python
+exec(open("scripts/populate_db.py").read())
+```
 
-For exmaple, on Linux run:
+To run from a command line:
 ```bash
 # Activate django virtual environment
 user@host ~/VPDB $ source ~/.virtualenvs/djangodev/bin/activate
 # Make migration to current database version
 (djangodev) user@host ~/VPDB $ python manage.py makemigrations
 # Apply migration to update database
+# You don't need to run this if the previous command reports no changes detected
 (djangodev) user@host ~/VPDB $ python manage.py migrate
-# Set environment variable so the script can import site-specific objects
-# On Windows, you would run: set DJANGO_SETTINGS_MODULE=VPDB.settings
-(djangodev) user@host ~/VPDB $ export DJANGO_SETTINGS_MODULE=VPDB.settings
-# Run script to populate the database
-(djangodev) user@host ~/VPDB $ python scripts/populate_db.py
+# Enter the interactive django prompt
+(djangodev) user@host ~/VPDB $ python manage.py shell
+# Actually run the script
+>>> exec(open("scripts/populate_db.py").read())
+```
+
+If this script is run again, it will just create duplicate objects. To clean up the database and start over, run:
+```bash
+(djangodev) user@host ~/VPDB $ python manage.py flush
 ```
