@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ newspaper_citation.title }}</title>
+</head>
+<body>
+
+<h1>{{ newspaper_citation.title }}</h1>
+
+<p>This lineage covers {{ newspaper_citation.num_variants }} variants.</p>
+
+<p>
+    {% load static %}
+    <a href="{% static "VirginiaPrinting/records/journal_citations/" %}{{ newspaper_citation.pdf_location }}">
+        Link to Detailed information on the variants of this lineage.
+    </a>
+</p>
+
+</body>
+</html>
