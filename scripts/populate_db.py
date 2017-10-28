@@ -1,7 +1,7 @@
 from VirginiaPrinting.models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord
 
 # Create a Newspaper Citation
-nc = NewspaperCitation(title="Abingdon", num_variants=1, pdf_location="Abingdon 01.pdf")
+nc = NewspaperCitation(title="Abingdon", num_variants=2, pdf_location="Abingdon 01.pdf")
 # Save it in the Database
 nc.save()
 # Create a Newspaper History that references the citation just created
