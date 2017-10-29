@@ -5,7 +5,7 @@ nc = NewspaperCitation(title="Abingdon", num_variants=2, pdf_location="Abingdon 
 # Save it in the Database
 nc.save()
 # Create a Newspaper History that references the citation just created
-nh = NewspaperHistory(pdf_location="Abingdon 01", newspaper_citation=nc)
+nh = NewspaperHistory(pdf_location="Abingdon 01.pdf", newspaper_citation=nc)
 nh.save()
 
 b = Biography(name="Adams", pdf_location="001 Adams 0.pdf")
