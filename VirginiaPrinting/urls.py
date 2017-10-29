@@ -6,5 +6,5 @@ urlpatterns = [
     # ex: /VPDB/
     url(r'^$', views.index, name='index'),
     # ex: /VPDB/news_cite/1/
-    url(r'^news_cite/(?P<obj_id>[0-9]+)/$', views.news_cite_detail, name='news_cite_detail')
+    url(r'^news_cite/(?P<pk>[0-9]+)/$', views.NewsCiteDetailView.as_view(), name='news_cite_detail')
 ]
