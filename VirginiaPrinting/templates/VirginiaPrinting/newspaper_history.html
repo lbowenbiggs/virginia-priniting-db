@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ newspaper_history.newspaper_citation.title }}</title>
+</head>
+<body>
+
+<h1>{{ newspaper_history.newspaper_citation.title }}</h1>
+
+<p>
+    {% load static %}
+    <a href="{% static 'VirginiaPrinting/records/journal_histories/' %}{{ newspaper_history.pdf_location }}">
+        Link to a narrative history of this Lineage.
+    </a>
+</p>
+
+<p>
+    For detailed information on each variation, see the
+    <a href="{% url 'VPDB:news_cite_detail' 1 %}">
+        Newspaper Citation for {{ newspaper_history.newspaper_citation.title }}.
+    </a>
+</p>
+
+</body>
+</html>
