@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ imprint_record.short_title }}</title>
+</head>
+<body>
+
+<h1>{{ imprint_record.short_title }}</h1>
+
+<p>
+    {% load static %}
+    <a href="{% static 'VirginiaPrinting/records/imprints/' %}{{ imprint_record.pdf_location }}">
+        Link to details about record {{ imprint_record.imprint_number }}.
+    </a>
+</p>
+
+</body>
+</html>

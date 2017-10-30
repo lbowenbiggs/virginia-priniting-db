@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^news_hist/(?P<pk>[0-9]+)/$', views.NewsHistDetailView.as_view(), name='news_hist_detail'),
     # ex: /VPDB/bio/1/
     url(r'^bio/(?P<pk>[0-9]+)/$', views.BioDetailView.as_view(), name='bio_detail'),
+    # ex: /VPDB/imprint/1/
+    url(r'^imprint/(?P<pk>[0-9]+)/$', views.ImprintDetailView.as_view(), name='imprint_detail'),
 ]

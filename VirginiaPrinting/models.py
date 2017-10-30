@@ -34,4 +34,7 @@ class ImprintRecord(models.Model):
     pdf_location = models.FilePathField(path="~/PycharmProjects/VPDB/static/imprints")
 
     def __str__(self):
-        return str(self.year) +  "." + str(self.sequence_number) + ": " + self.short_title
+        return self.imprint_number() + ": " + self.short_title
+
+    def imprint_number(self):
+        return str(self.year) + "." + str(self.sequence_number)
