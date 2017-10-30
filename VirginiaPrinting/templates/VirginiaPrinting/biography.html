@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ biography.name }}</title>
+</head>
+<body>
+
+<h1>{{ biography.name }}</h1>
+
+<p>
+    {% load static %}
+    <a href="{% static 'VirginiaPrinting/records/biographies/' %}{{ biography.pdf_location }}">
+        Link to a biography.
+    </a>
+</p>
+
+</body>
+</html>

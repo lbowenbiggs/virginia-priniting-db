@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.views import generic
 
-from .models import NewspaperCitation, NewspaperHistory
+from .models import NewspaperCitation, NewspaperHistory, Biography
 
 
 # Create your views here.
@@ -19,3 +19,9 @@ class NewsHistDetailView(generic.DetailView):
     model = NewspaperHistory
     context_object_name = 'newspaper_history'
     template_name = 'VirginiaPrinting/newspaper_history.html'
+
+
+class BioDetailView(generic.DetailView):
+    model = Biography
+    context_object_name = 'biography'
+    template_name = 'VirginiaPrinting/biography.html'
