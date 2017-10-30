@@ -9,6 +9,22 @@ def index(request):
     return HttpResponse("Hello, Virginia")
 
 
+def news_cites_index(request):
+    return HttpResponse("Index of Newspaper Citations")
+
+
+def news_hists_index(request):
+    return HttpResponse("Index of Newspaper Histories")
+
+
+def bios_index(request):
+    return HttpResponse("Index of Biographies")
+
+
+def imprints_index(request):
+    return HttpResponse("Index of Imprint Records")
+
+
 class NewsCiteDetailView(generic.DetailView):
     model = NewspaperCitation
     context_object_name = 'newspaper_citation'
