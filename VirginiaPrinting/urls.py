@@ -5,6 +5,7 @@ app_name = 'VPDB'
 urlpatterns = [
     # ex: /VPDB/
     url(r'^$', views.index, name='index'),
+
     # ex: /VPDB/news_cite/1/
     url(r'^news_cite/(?P<pk>[0-9]+)/$', views.NewsCiteDetailView.as_view(), name='news_cite_detail'),
     # ex: /VPDB/news_hist/1/
@@ -13,6 +14,7 @@ urlpatterns = [
     url(r'^bio/(?P<pk>[0-9]+)/$', views.BioDetailView.as_view(), name='bio_detail'),
     # ex: /VPDB/imprint/1/
     url(r'^imprint/(?P<pk>[0-9]+)/$', views.ImprintDetailView.as_view(), name='imprint_detail'),
+
     # ex: /VPDB/news_cites/
     url(r'^news_cites/$', views.news_cites_index, name='news_cites_index'),
     # ex: /VPDB/news_hists/

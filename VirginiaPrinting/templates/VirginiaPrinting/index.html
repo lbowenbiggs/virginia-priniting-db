@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index of Virginia Printing</title>
+</head>
+<body>
+
+<h1>Index of Virginia Printing</h1>
+
+<p>This page lists all the records in the database for Newspaper Citations.</p>
+
+<h2>Newspaper Citations</h2>
+<p><a href="{% url 'VPDB:news_cites_index' %}">Link to the Index of Newspaper Citations</a></p>
+{%  if news_cites %}
+<ul>
+    {%  for news_cite in news_cites %}
+    <li><a href="{% url 'VPDB:news_cite_detail' news_cite.id %}">{{ news_cite.title }}</a></li>
+    {%  endfor %}
+</ul>
+{%  else %}
+<p>No Newspaper Citations are available.</p>
+{% endif %}
+
+</body>
+</html>

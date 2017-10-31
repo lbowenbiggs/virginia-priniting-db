@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.views import generic
 
 from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord
@@ -6,7 +7,9 @@ from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecor
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, Virginia")
+    news_cites = NewspaperCitation.objects.all()
+    context = {'news_cites': news_cites}
+    return render(request, 'VirginiaPrinting/index.html', context)
 
 
 def news_cites_index(request):
