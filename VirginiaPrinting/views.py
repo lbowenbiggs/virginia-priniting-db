@@ -24,16 +24,22 @@ class NewsCitesListView(generic.ListView):
     context_object_name = 'news_cites'
 
 
-def news_hists_index(request):
-    return HttpResponse("Index of Newspaper Histories")
+class NewsHistsListView(generic.ListView):
+    model = NewspaperHistory
+    template_name = 'VirginiaPrinting/newspaper_history_index.html'
+    context_object_name = 'news_hists'
 
 
-def bios_index(request):
-    return HttpResponse("Index of Biographies")
+class BiosListView(generic.ListView):
+    model = Biography
+    template_name = 'VirginiaPrinting/biography_index.html'
+    context_object_name = 'bios'
 
 
-def imprints_index(request):
-    return HttpResponse("Index of Imprint Records")
+class ImprintsListView(generic.ListView):
+    model = ImprintRecord
+    template_name = 'VirginiaPrinting/imprint_record_index.html'
+    context_object_name = 'imprints'
 
 
 class NewsCiteDetailView(generic.DetailView):

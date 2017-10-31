@@ -18,9 +18,9 @@ urlpatterns = [
     # ex: /VPDB/news_cites/
     url(r'^news_cites/$', views.NewsCitesListView.as_view(), name='news_cites_index'),
     # ex: /VPDB/news_hists/
-    url(r'^news_hists/$', views.news_hists_index, name='news_hists_index'),
+    url(r'^news_hists/$', views.NewsHistsListView.as_view(), name='news_hists_index'),
     # ex: /VPDB/bios/
-    url(r'^bios/$', views.bios_index, name='bios_index'),
+    url(r'^bios/$', views.BiosListView.as_view(), name='bios_index'),
     # ex: /VPDB/imprints/
-    url(r'^imprints/$', views.imprints_index, name='imprints_index'),
+    url(r'^imprints/$', views.ImprintsListView.as_view(), name='imprints_index'),
 ]

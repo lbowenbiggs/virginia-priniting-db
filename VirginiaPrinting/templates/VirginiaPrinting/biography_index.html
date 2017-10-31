@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index of Biographies</title>
+</head>
+<body>
+
+<h2>Biographies</h2>
+{%  if bios %}
+<ul>
+    {%  for bio in bios %}
+    <li><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></li>
+    {%  endfor %}
+</ul>
+{%  else %}
+<p>No Biographies are available.</p>
+{% endif %}
+
+<p><a href="{%  url 'VPDB:index' %}">Go back to the Index</a></p>
+
+</body>
+</html>

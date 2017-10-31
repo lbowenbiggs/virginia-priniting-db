@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index of Newspaper Histories</title>
+</head>
+<body>
+
+<h2>Newspaper Histories</h2>
+{%  if news_hists %}
+<ul>
+    {%  for news_hist in news_hists %}
+    <li><a href="{% url 'VPDB:news_hist_detail' news_hist.id %}">{{ news_hist.newspaper_citation.title }}</a></li>
+    {%  endfor %}
+</ul>
+{%  else %}
+<p>No Newspaper Histories are available.</p>
+{% endif %}
+
+<p><a href="{%  url 'VPDB:index' %}">Go back to the Index</a></p>
+
+</body>
+</html>
