@@ -8,7 +8,13 @@ from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecor
 # Create your views here.
 def index(request):
     news_cites = NewspaperCitation.objects.all()
-    context = {'news_cites': news_cites}
+    news_hists = NewspaperHistory.objects.all()
+    bios = Biography.objects.all()
+    imprints = ImprintRecord.objects.all()
+    context = {'news_cites': news_cites,
+               'news_hists': news_hists,
+               'bios': bios,
+               'imprints': imprints}
     return render(request, 'VirginiaPrinting/index.html', context)
 
 
