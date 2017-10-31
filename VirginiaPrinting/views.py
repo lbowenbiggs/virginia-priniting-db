@@ -18,8 +18,10 @@ def index(request):
     return render(request, 'VirginiaPrinting/index.html', context)
 
 
-def news_cites_index(request):
-    return HttpResponse("Index of Newspaper Citations")
+class NewsCitesListView(generic.ListView):
+    model = NewspaperCitation
+    template_name = 'VirginiaPrinting/newspaper_citation_index.html'
+    context_object_name = 'news_cites'
 
 
 def news_hists_index(request):
