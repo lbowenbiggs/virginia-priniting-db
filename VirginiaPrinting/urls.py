@@ -13,7 +13,7 @@ urlpatterns = [
     # ex: /VPDB/bio/1/
     url(r'^bio/(?P<pk>[0-9]+)/$', views.BioDetailView.as_view(), name='bio_detail'),
     # ex: /VPDB/imprint/1/
-    url(r'^imprint/(?P<pk>[0-9]+)/$', views.ImprintDetailView.as_view(), name='imprint_detail'),
+    url(r'^imprint/(?P<pk>[0-9]+.[0-9]+)/$', views.ImprintDetailView.as_view(), name='imprint_detail'),
 
     # ex: /VPDB/news_cites/
     url(r'^news_cites/$', views.NewsCitesListView.as_view(), name='news_cites_index'),
