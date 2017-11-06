@@ -28,13 +28,11 @@ class Biography(models.Model):
 
 
 class ImprintRecord(models.Model):
+    imprint_number = models.DecimalField(primary_key=True, max_digits=7, decimal_places=4)
     year = models.IntegerField()
     sequence_number = models.IntegerField()
     short_title = models.CharField(max_length=200)
     pdf_location = models.FilePathField(path="~/PycharmProjects/VPDB/static/imprints")
 
     def __str__(self):
-        return self.imprint_number() + ": " + self.short_title
-
-    def imprint_number(self):
-        return str(self.year) + "." + str(self.sequence_number)
+        return self.imprint_number + ": " + self.short_title
