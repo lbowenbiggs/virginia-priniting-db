@@ -28,7 +28,7 @@ class Biography(models.Model):
 
 
 class ImprintRecord(models.Model):
-    imprint_number = models.DecimalField(primary_key=True, max_digits=7, decimal_places=4)
+    imprint_number = models.DecimalField(primary_key=True, max_digits=7, decimal_places=3)
     year = models.IntegerField()
     sequence_number = models.IntegerField()
     short_title = models.CharField(max_length=200)
