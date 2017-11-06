@@ -7,10 +7,10 @@ from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecor
 
 # Create your views here.
 def index(request):
-    news_cites = NewspaperCitation.objects.all()
-    news_hists = NewspaperHistory.objects.all()
-    bios = Biography.objects.all()
-    imprints = ImprintRecord.objects.all()
+    news_cites = NewspaperCitation.objects.all()[:5]
+    news_hists = NewspaperHistory.objects.all()[:5]
+    bios = Biography.objects.all()[:5]
+    imprints = ImprintRecord.objects.all()[:5]
     context = {'news_cites': news_cites,
                'news_hists': news_hists,
                'bios': bios,
