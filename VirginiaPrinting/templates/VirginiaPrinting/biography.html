@@ -8,10 +8,50 @@
 
 <h1>{{ biography.name }}</h1>
 
+<p><strong>Name:</strong> {{ biography.name }}</p>
+{% if biography.formal_name %}
+<p><strong>Formal Name:</strong> {{ biography.formal_name }}</p>
+{% endif %}
+<p><strong>First Date:</strong> {% if biography.first_date %}{{ biography.first_date }}{% else %}Unknown {% endif %}; <strong>Last Date:</strong> {% if biography.last_date %}{{ biography.last_date }}{% else %}Unknown{% endif %}</p>
+<p><strong>Function:</strong> {% if biography.function %}{{ biography.function }}{% else %}Unknown{% endif %}</p>
+<p><strong>Locales:</strong> {% if biography.locales %}{{ biography.locales }}{% else %}Unknown{% endif %}</p>
+
+{% if biography.precis %}
+<h3>Precis</h3>
+{{ biography.precis }}
+{% endif %}
+
+<h3>{{ biography.name }} is associated with {{ biography.associates.count }} other people.</h3>
+{% if biography.associates.exists %}
+    <ul>
+        {% for associate in biography.associates.all %}
+        <li><a href="{% url 'VPDB:bio_detail' associate.id %}">{{ associate.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3>{{ biography.name }} is associated with {{ biography.newspapercitation_set.count }} newspaper variants.</h3>
+{% if biography.newspapercitation_set.exists %}
+    <ul>
+        {% for citation in biography.newspapercitation_set.all %}
+        <li><a href="{% url 'VPDB:news_cite_detail' citation.id %}">{{ citation.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3>{{ biography.name }} is associated with {{ biography.imprintrecord_set.count }} imprint records:</h3>
+{% if biography.imprintrecord_set.exists %}
+    <ul>
+        {% for imprint in biography.imprintrecord_set.all %}
+        <li><a href="{% url 'VPDB:imprint_detail' imprint.imprint_number %}">{{ imprint.imprint_number }}: {{ imprint.short_title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <p>
     {% load static %}
     <a href="{% static 'VirginiaPrinting/records/biographies/' %}{{ biography.pdf_location }}">
-        Link to a biography.
+        Link to a full biography.
     </a>
 </p>
 
