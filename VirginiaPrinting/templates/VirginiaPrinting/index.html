@@ -8,55 +8,11 @@
 
 <h1>Index of Virginia Printing</h1>
 
-<p>This page lists all the records in the database.</p>
-
-<h2>Newspaper Citations</h2>
-<p><a href="{% url 'VPDB:news_cites_index' %}">Link to the Index of Newspaper Citations</a></p>
-{%  if news_cites %}
-<ul>
-    {%  for news_cite in news_cites %}
-    <li><a href="{% url 'VPDB:news_cite_detail' news_cite.id %}">{{ news_cite.title }}</a></li>
-    {%  endfor %}
-</ul>
-{%  else %}
-<p>No Newspaper Citations are available.</p>
-{% endif %}
-
-<h2>Newspaper Histories</h2>
-<p><a href="{% url 'VPDB:news_hists_index' %}">Link to the Index of Newspaper Histories</a></p>
-{%  if news_hists %}
-<ul>
-    {%  for news_hist in news_hists %}
-    <li><a href="{% url 'VPDB:news_hist_detail' news_hist.id %}">{{ news_hist.group_title }}</a></li>
-    {%  endfor %}
-</ul>
-{%  else %}
-<p>No Newspaper Histories are available.</p>
-{% endif %}
-
-<h2>Biographies</h2>
-<p><a href="{% url 'VPDB:bios_index' %}">Link to the Index of Biographies</a></p>
-{%  if bios %}
-<ul>
-    {%  for bio in bios %}
-    <li><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></li>
-    {%  endfor %}
-</ul>
-{%  else %}
-<p>No Biographies are available.</p>
-{% endif %}
-
-<h2>Imprint Records</h2>
-<p><a href="{% url 'VPDB:imprints_index' %}">Link to the Index of Imprint Records</a></p>
-{%  if imprints %}
-<ul>
-    {%  for imprint in imprints %}
-    <li><a href="{% url 'VPDB:imprint_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></li>
-    {%  endfor %}
-</ul>
-{%  else %}
-<p>No Imprint Records are available.</p>
-{% endif %}
+<p>
+    Explore the history of the printing trade in Virginia before 1820.
+    This website has a database with <a href="{% url 'VPDB:bios_index' %}">{{ num_bios }} biographies</a> of people involved in Virgina's printing trade.
+    It also has <a href="{% url 'VPDB:imprints_index' %}">imprint records for {{ num_imprints }} documents</a> printed in Virginia, including <a href="{% url 'VPDB:news_cites_index' %}">{{ num_news_cites }} variants of newspapers</a> grouped into <a href="{% url 'VPDB:news_hists_index' %}">{{ num_news_hists }} lineages.</a>
+</p>
 
 </body>
 </html>

@@ -7,14 +7,14 @@ from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecor
 
 # Create your views here.
 def index(request):
-    news_cites = NewspaperCitation.objects.all()[:5]
-    news_hists = NewspaperHistory.objects.all()[:5]
-    bios = Biography.objects.all()[:5]
-    imprints = ImprintRecord.objects.all()[:5]
-    context = {'news_cites': news_cites,
-               'news_hists': news_hists,
-               'bios': bios,
-               'imprints': imprints}
+    news_cites = NewspaperCitation.objects.count()
+    news_hists = NewspaperHistory.objects.count()
+    bios = Biography.objects.count()
+    imprints = ImprintRecord.objects.count()
+    context = {'num_news_cites': news_cites,
+               'num_news_hists': news_hists,
+               'num_bios': bios,
+               'num_imprints': imprints}
     return render(request, 'VirginiaPrinting/index.html', context)
 
 def chronologyView(request):
