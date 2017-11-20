@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<h2>Imprint Records</h2>
-{%  if imprints %}
+<h2>Imprint Records by Year Published</h2>
+{% if imprints %}
 <ul>
-    {%  for imprint in imprints %}
-    <li><a href="{% url 'VPDB:chronology_imprints_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></li>
+    {% for imprint in imprints %}
+    <li><a href="{% url 'VPDB:imprint_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></li>
     {%  endfor %}
 </ul>
 {%  else %}
