@@ -27,7 +27,7 @@
 {%  if news_hists %}
 <ul>
     {%  for news_hist in news_hists %}
-    <li><a href="{% url 'VPDB:news_hist_detail' news_hist.id %}">{{ news_hist.newspaper_citation.title }}</a></li>
+    <li><a href="{% url 'VPDB:news_hist_detail' news_hist.id %}">{{ news_hist.group_title }}</a></li>
     {%  endfor %}
 </ul>
 {%  else %}
