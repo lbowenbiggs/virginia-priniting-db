@@ -6,7 +6,14 @@
 </head>
 <body>
 
-<h1>{{ imprint_record.short_title }}</h1>
+<h1>{{ imprint_record.imprint_number }}: {{ imprint_record.short_title }}</h1>
+
+<p><strong>Published:</strong> {{ imprint_record.year }}</p>
+<p><strong>Full Title:</strong> {{ imprint_record.title }}</p>
+<p><strong>Author:</strong> {{ imprint_record.author }}</p>
+<p><strong>Place Issued:</strong> {{ imprint_record.place_issued }}</p>
+<p><strong>Issuing Press: </strong> {{ imprint_record.issuing_press }}</p>
+<p><strong>Description: </strong> {{ imprint_record.description }}</p>
 
 <p>
     {% load static %}
@@ -14,6 +21,15 @@
         Link to details about record {{ imprint_record.imprint_number }}.
     </a>
 </p>
+
+{% if imprint_record.associates.exists %}
+    <h3>People Associated with this Imprint Record</h3>
+    <ul>
+        {% for bio in imprint_record.associates.all %}
+            <li><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 <p><a href="{% url 'VPDB:imprints_index' %}">Go back to Index of Imprint Records</a></p>
 
