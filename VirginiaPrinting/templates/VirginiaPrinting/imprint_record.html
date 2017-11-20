@@ -23,7 +23,7 @@
 </p>
 
 {% if imprint_record.associates.exists %}
-    <h3>People Associated with this Imprint Record</h3>
+    <p>There are {{ imprint_record.associates.count }} people associated with this imprint record:</p>
     <ul>
         {% for bio in imprint_record.associates.all %}
             <li><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></li>
