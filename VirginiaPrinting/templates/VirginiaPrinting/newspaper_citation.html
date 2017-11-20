@@ -16,7 +16,7 @@
 
 {% load static %}
 
-<p><em>{{ newspaper_citation.title }}</em> is part of the <a href="{% url 'VPDB:news_hists_index' %}">{{ newspaper_citation.lineage.group_title }} Lineage</a>. For detailed information on all the variants in the {{ newspaper_citation.lineage.group_title }} Lineage, <a href="{% static 'VirginiaPrinting/records/journal_citations/' %}{{ newspaper_citation.pdf_location }}">see here.</a></p>
+<p><em>{{ newspaper_citation.title }}</em> is part of the <a href="{% url 'VPDB:news_hist_detail' newspaper_citation.lineage_id %}">{{ newspaper_citation.lineage.group_title }} Lineage</a>. For detailed information on all the variants in the {{ newspaper_citation.lineage.group_title }} Lineage, <a href="{% static 'VirginiaPrinting/records/journal_citations/' %}{{ newspaper_citation.pdf_location }}">see here.</a></p>
 
 {% if newspaper_citation.associates.exists %}
     <h3>People associated with {{ newspaper_citation.title }}</h3>
