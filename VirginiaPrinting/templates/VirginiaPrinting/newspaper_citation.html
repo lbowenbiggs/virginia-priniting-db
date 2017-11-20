@@ -6,16 +6,26 @@
 </head>
 <body>
 
-<h1>{{ newspaper_citation.title }}</h1>
+<h1>{{ newspaper_citation.variant_number }}: {{ newspaper_citation.title }}</h1>
 
-<p>This lineage covers {{ newspaper_citation.num_variants }} variants.</p>
 
-<p>
-    {% load static %}
-    <a href="{% static 'VirginiaPrinting/records/journal_citations/' %}{{ newspaper_citation.pdf_location }}">
-        Link to Detailed information on the variants of this lineage.
-    </a>
-</p>
+<p><strong>Starting Date:</strong> {{ newspaper_citation.start_date }}</p>
+<p><strong>Ending Date:</strong> {{ newspaper_citation.end_date }}</p>
+<p><strong>Publication Frequency:</strong> {{ newspaper_citation.frequency }}</p>
+<p><strong>Proprietors:</strong> {{ newspaper_citation.proprietors }}</p>
+
+{% load static %}
+
+<p><em>{{ newspaper_citation.title }}</em> is part of the <a href="{% url 'VPDB:news_hists_index' %}">{{ newspaper_citation.lineage.group_title }} Lineage</a>. For detailed information on all the variants in the {{ newspaper_citation.lineage.group_title }} Lineage, <a href="{% static 'VirginiaPrinting/records/journal_citations/' %}{{ newspaper_citation.pdf_location }}">see here.</a></p>
+
+{% if newspaper_citation.associates.exists %}
+    <h3>People associated with {{ newspaper_citation.title }}</h3>
+    <ul>
+    {% for associate in newspaper_citation.associates.all %}
+        <li><a href="{% url 'VPDB:bio_detail' associate.id %}">{{ associate.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
 
 <p><a href="{% url 'VPDB:news_cites_index' %}">Go back to Index of Newspaper Citations</a></p>
 
