@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chronology of Imprint Records</title>
+</head>
+<body>
+
+<h2>Imprint Records</h2>
+{%  if imprints %}
+<ul>
+    {%  for imprint in imprints %}
+    <li><a href="{% url 'VPDB:chronology_imprints_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></li>
+    {%  endfor %}
+</ul>
+{%  else %}
+<p>No Imprint Records are available.</p>
+{% endif %}
+
+<p><a href="{%  url 'VPDB:index' %}">Go back to the Index</a></p>
+
+</body>
+</html>

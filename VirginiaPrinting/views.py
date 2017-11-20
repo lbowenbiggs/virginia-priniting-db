@@ -17,6 +17,10 @@ def index(request):
                'imprints': imprints}
     return render(request, 'VirginiaPrinting/index.html', context)
 
+def chronologyView(request):
+    imprints = ImprintRecord.objects.all().order_by('year')
+    context = {'imprints': imprints}
+    return render(request, 'VirginiaPrinting/chronology_imprints.html', context)
 
 class NewsCitesListView(generic.ListView):
     model = NewspaperCitation
