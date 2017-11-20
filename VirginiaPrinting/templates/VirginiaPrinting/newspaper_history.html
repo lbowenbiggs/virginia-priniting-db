@@ -17,7 +17,7 @@
 
 <h3>Variants in this Lineage:</h3>
 <ul>
-    {% for variant in newspaper_history.newspapercitation_set %}
+    {% for variant in newspaper_history.newspapercitation_set.all %}
         <li><a href="{% url 'VPDB:news_cite_detail' variant.id %}">{{ variant.variant_number }}: {{ variant.title }}</a></li>
     {% endfor %}
 </ul>
