@@ -43,7 +43,7 @@ class ImprintRecord(models.Model):
 
 
 class NewspaperHistory(models.Model):
-    lineage_number = models.CharField(primary_key=True, max_length=200)
+    lineage_number = models.CharField(max_length=200)
     group_title = models.CharField(max_length=200, blank=True)
 
     pdf_location = models.FilePathField(path="~/PycharmProjects/VPDB/static/journal_histories")
@@ -56,7 +56,7 @@ class NewspaperHistory(models.Model):
 
 
 class NewspaperCitation(models.Model):
-    variant_number = models.CharField(primary_key=True, max_length=200)
+    variant_number = models.CharField(max_length=200)
     title = models.CharField(max_length=200, blank=True)
     start_date = models.CharField(max_length=200, blank=True)
     end_date = models.CharField(max_length=200, blank=True)
