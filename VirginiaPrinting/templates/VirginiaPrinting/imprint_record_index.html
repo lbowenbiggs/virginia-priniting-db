@@ -7,6 +7,9 @@
 <body>
 
 <h2>Imprint Records</h2>
+
+<p><a href="{% url 'VPDB:chronology_imprints_detail' %}">View Chronologically</a></p>
+
 {%  if imprints %}
 <ul>
     {%  for imprint in imprints %}
