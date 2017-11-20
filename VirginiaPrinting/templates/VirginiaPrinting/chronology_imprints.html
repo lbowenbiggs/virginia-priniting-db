@@ -10,6 +10,9 @@
 {% if imprints %}
 <ul>
     {% for imprint in imprints %}
+        {% ifchanged imprint.year %}
+            <h3>{{ imprint.year }}</h3>
+        {% endifchanged %}
     <li><a href="{% url 'VPDB:imprint_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></li>
     {%  endfor %}
 </ul>
