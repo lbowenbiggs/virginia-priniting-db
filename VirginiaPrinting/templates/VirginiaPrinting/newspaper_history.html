@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>{{ newspaper_history.group_title }}</h1>
+<h1>{{ newspaper_history.lineage_number }}: {{ newspaper_history.group_title }}</h1>
 
 <p>
     {% load static %}
@@ -14,6 +14,13 @@
         Link to a narrative history of this Lineage.
     </a>
 </p>
+
+<h3>Variants in this Lineage:</h3>
+<ul>
+    {% for variant in newspaper_history.newspapercitation_set %}
+        <li><a href="{% url 'VPDB:news_cite_detail' variant.id %}">{{ variant.variant_number }}: {{ variant.title }}</a></li>
+    {% endfor %}
+</ul>
 
 <p><a href="{% url 'VPDB:news_hists_index' %}">Go back to Index of Newspaper Histories</a></p>
 
