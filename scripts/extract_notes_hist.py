@@ -15,7 +15,7 @@ if (len(sys.argv) > 1):
 	for line in infile:
 		num_lines = num_lines + 1
 		if (num_lines == 1):
-			save_str = line.split(':')[0].lower() + '\t'
+			save_str = line.split(':')[0].lower()[1:] + '\t'
 		if (num_newlines > 0 and not line.isspace()):
 			reading = True
 		elif (line.isspace()):
