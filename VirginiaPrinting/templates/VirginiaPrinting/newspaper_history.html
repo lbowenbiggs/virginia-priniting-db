@@ -8,6 +8,9 @@
 
 <h1>{{ newspaper_history.lineage_number }}: {{ newspaper_history.group_title }}</h1>
 
+<h3>Narrative History of this Lineage</h3>
+    {{ newspaper_history.notes }}
+
 <p>
     {% load static %}
     <a href="{% static 'VirginiaPrinting/records/journal_histories/' %}{{ newspaper_history.pdf_location }}">
