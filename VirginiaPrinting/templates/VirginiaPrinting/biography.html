@@ -21,6 +21,9 @@
 {{ biography.precis }}
 {% endif %}
 
+<h3>Notes</h3>
+<p>{{ biography.notes }}</p>
+
 <h3>{{ biography.name }} is associated with {{ biography.associates.count }} other people.</h3>
 {% if biography.associates.exists %}
     <ul>
@@ -51,7 +54,7 @@
 <p>
     {% load static %}
     <a href="{% static 'VirginiaPrinting/records/biographies/' %}{{ biography.pdf_location }}">
-        Link to a full biography.
+        Printer-Friendly PDF
     </a>
 </p>
 

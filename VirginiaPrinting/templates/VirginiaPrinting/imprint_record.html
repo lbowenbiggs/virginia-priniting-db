@@ -15,12 +15,8 @@
 <p><strong>Issuing Press: </strong> {{ imprint_record.issuing_press }}</p>
 <p><strong>Description: </strong> {{ imprint_record.description }}</p>
 
-<p>
-    {% load static %}
-    <a href="{% static 'VirginiaPrinting/records/imprints/' %}{{ imprint_record.pdf_location }}">
-        Link to details about record {{ imprint_record.imprint_number }}.
-    </a>
-</p>
+<h3>Notes</h3>
+<p>{{ imprint_record.notes }}</p>
 
 {% if imprint_record.associates.exists %}
     <p>There are {{ imprint_record.associates.count }} people associated with this imprint record:</p>
@@ -30,6 +26,13 @@
         {% endfor %}
     </ul>
 {% endif %}
+
+<p>
+    {% load static %}
+    <a href="{% static 'VirginiaPrinting/records/imprints/' %}{{ imprint_record.pdf_location }}">
+        Printer-Friendly PDF
+    </a>
+</p>
 
 <p><a href="{% url 'VPDB:imprints_index' %}">Go back to Index of Imprint Records</a></p>
 
