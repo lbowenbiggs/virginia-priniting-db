@@ -22,6 +22,9 @@ def chronologyView(request):
     context = {'imprints': imprints}
     return render(request, 'VirginiaPrinting/chronology_imprints.html', context)
 
+def searchView(request):
+    pass
+
 class NewsCitesListView(generic.ListView):
     model = NewspaperCitation
     template_name = 'VirginiaPrinting/newspaper_citation_index.html'

@@ -14,5 +14,12 @@
     It also has <a href="{% url 'VPDB:imprints_index' %}">imprint records for {{ num_imprints }} documents</a> printed in Virginia, including <a href="{% url 'VPDB:news_cites_index' %}">{{ num_news_cites }} variants of newspapers</a> grouped into <a href="{% url 'VPDB:news_hists_index' %}">{{ num_news_hists }} lineages.</a>
 </p>
 
+<h3>Search (Alpha)</h3>
+<form action="{% url 'VPDB:search' %}" method="get">
+    <input type="text" name="search_term" id="search_term">
+    <label for="search_term">Search Term</label>
+    <input type="submit" value="Search">
+</form>
+
 </body>
 </html>
