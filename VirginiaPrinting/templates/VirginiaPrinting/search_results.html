@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index of Virginia Printing</title>
+</head>
+<body>
+
+<h1>Index of Virginia Printing</h1>
+
+<h2>Bios matching {{ search_term }}</h2>
+
+{%  if biographies %}
+<ul>
+    {%  for bio in biographies %}
+    <li><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></li>
+    {%  endfor %}
+</ul>
+{%  else %}
+<p>No Biographies are available.</p>
+{% endif %}
+
+</body>
+</html>

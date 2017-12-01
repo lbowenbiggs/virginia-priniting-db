@@ -23,7 +23,14 @@ def chronologyView(request):
     return render(request, 'VirginiaPrinting/chronology_imprints.html', context)
 
 def searchView(request):
-    pass
+    query_text = request.GET.get('search_term')
+
+    bios = Biography.objects.filter(name__icontains=query_text)
+
+    context = {'search_term': query_text,
+               'biographies': bios}
+
+    return render(request, 'VirginiaPrinting/search_results.html', context)
 
 class NewsCitesListView(generic.ListView):
     model = NewspaperCitation
