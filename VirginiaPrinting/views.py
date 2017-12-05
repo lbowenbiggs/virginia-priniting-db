@@ -32,6 +32,22 @@ def searchView(request):
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
+def searchFieldsView(request):
+    query_text = request.GET.get('search_term')
+    biography_name = request.GET.get('bio_name')
+    biography_func = request.GET.get('bio_function')
+
+    print(biography_name)
+    print(biography_func)
+
+    bios = Biography.objects.filter(name__icontains=query_text)
+
+    context = {'search_term': query_text,
+               'biographies': bios}
+
+    return render(request, 'VirginiaPrinting/search_results.html', context)
+
+
 class NewsCitesListView(generic.ListView):
     model = NewspaperCitation
     template_name = 'VirginiaPrinting/newspaper_citation_index.html'
