@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-
+from django.db.models import Q
 from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord
 
 
@@ -25,7 +25,7 @@ def chronologyView(request):
 def searchView(request):
     query_text = request.GET.get('search_term')
 
-    bios = Biography.objects.filter(name__icontains=query_text)
+    bios = Biography.objects.filter(Q(name__icontains=query_text) | Q(notes__icontains=query_text))
 
     context = {'search_term': query_text,
                'biographies': bios}
