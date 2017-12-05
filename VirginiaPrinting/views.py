@@ -28,7 +28,9 @@ def searchView(request):
     bios = Biography.objects.filter(Q(name__icontains=query_text) | Q(notes__icontains=query_text))
 
     context = {'search_term': query_text,
-               'biographies': bios}
+               'biographies': bios,
+               'biography_name': True,
+               'biography_note': True}
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
@@ -36,14 +38,40 @@ def searchFieldsView(request):
     query_text = request.GET.get('search_term')
     biography_name = request.GET.get('bio_name')
     biography_func = request.GET.get('bio_function')
+    biography_note = request.GET.get('bio_notes')
 
-    print(biography_name)
-    print(biography_func)
+    qName = Q(name__icontains=query_text)
+    qFunc = Q(function__icontains=query_text)
+    qNotes = Q(notes__icontains=query_text)
 
-    bios = Biography.objects.filter(name__icontains=query_text)
+    if biography_name:
+        if biography_func:
+            if biography_note:
+                bio = Biography.objects.filter(qName | qFunc | qNotes)
+            else:
+                bio = Biography.objects.filter(qName | qFunc)
+        else:
+            if biography_note:
+                bio = Biography.objects.filter(qName | qNotes)
+            else:
+                bio = Biography.objects.filter(qName)
+    else:
+        if biography_func:
+            if biography_note:
+                bio = Biography.objects.filter(qFunc | qNotes)
+            else:
+                bio = Biography.objects.filter(qFunc)
+        else:
+            if biography_note:
+                bio = Biography.objects.filter(qNotes)
+            else:
+                bio = None
 
     context = {'search_term': query_text,
-               'biographies': bios}
+               'biographies': bio,
+               'biography_name': biography_name,
+               'biography_func': biography_func,
+               'biography_note': biography_note}
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 

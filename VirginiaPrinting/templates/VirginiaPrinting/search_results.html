@@ -8,14 +8,16 @@
 
 <h1>Index of Virginia Printing</h1>
 
-<h2>Bios matching {{ search_term }}</h2>
+<h2>{{ biographies.count }} biographies matching {{ search_term }}</h2>
 
 <h3>Field Search</h3>
 <form action="{% url 'VPDB:field_search' %}" method="get">
-    <input type="checkbox" name="bio_name" id="bio_name" value="name" checked>
+    <input type="checkbox" name="bio_name" id="bio_name" value="name" {% if biography_name %}checked{% endif %}>
     <label for="bio_name">Name</label>
-    <input type="checkbox" name="bio_function" id="bio_function" value="function">
+    <input type="checkbox" name="bio_function" id="bio_function" value="function" {% if biography_func %}checked{% endif %}>
     <label for="bio_function">Function</label>
+    <input type="checkbox" name="bio_notes" id="bio_notes" value="notes" {% if biography_note %}checked{% endif %}>
+    <label for="bio_notes">Notes</label>
 
 <br>
 <br>
