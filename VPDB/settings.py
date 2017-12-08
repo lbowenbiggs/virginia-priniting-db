@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'VPDB.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'indexvir_vpdb',
+        'USER': 'indexvir_super',
+        'PASSWORD': '4Katz=^oo^=',
+        'HOST': 'indexvirginiaprinting.org',
+        'PORT': '3306'
     }
 }
 
