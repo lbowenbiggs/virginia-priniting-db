@@ -37,8 +37,11 @@
           <i class="material-icons">search</i>
         </label>
         <div class="mdl-textfield__expandable-holder">
-          <input class="mdl-textfield__input" type="text" name="sample"
+            <form action="{% url 'VPDB:search' %}" method="get">
+          <input class="mdl-textfield__input" type="text" name="search_term"
                  id="fixed-header-drawer-exp">
+            <input class="hidden" type="submit">
+                </form>
         </div>
       </div>
 
