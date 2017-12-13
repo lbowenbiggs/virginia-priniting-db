@@ -69,7 +69,7 @@
 <h3>Notes</h3>
 <p>{{ biography.notes }}</p>
 
-<h3>{{ biography.name }} is associated with {{ biography.associates.count }} other people.</h3>
+<h3>{{ biography.name }} is associated with {{ biography.associates.count }} other pe{{ biography.associates.count|pluralize:"rson,ople" }}.</h3>
 {% if biography.associates.exists %}
     <ul>
         {% for associate in biography.associates.all %}
@@ -78,7 +78,7 @@
     </ul>
 {% endif %}
 
-<h3>{{ biography.name }} is associated with {{ biography.newspapercitation_set.count }} newspaper variants.</h3>
+<h3>{{ biography.name }} is associated with {{ biography.newspapercitation_set.count }} newspaper variant{{ biography.newspapercitation_set.count|pluralize }}.</h3>
 {% if biography.newspapercitation_set.exists %}
     <ul>
         {% for citation in biography.newspapercitation_set.all %}
@@ -87,7 +87,7 @@
     </ul>
 {% endif %}
 
-<h3>{{ biography.name }} is associated with {{ biography.imprintrecord_set.count }} imprint records:</h3>
+<h3>{{ biography.name }} is associated with {{ biography.imprintrecord_set.count }} imprint record{{ biography.imprintrecord_set.count|pluralize }}:</h3>
 {% if biography.imprintrecord_set.exists %}
     <ul>
         {% for imprint in biography.imprintrecord_set.all %}

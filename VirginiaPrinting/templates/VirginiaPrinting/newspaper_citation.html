@@ -65,7 +65,7 @@
 <p><em>{{ newspaper_citation.title }}</em> is part of the <a href="{% url 'VPDB:news_hist_detail' newspaper_citation.lineage_id %}">{{ newspaper_citation.lineage.group_title }} Lineage</a>. For detailed information on all the variants in the {{ newspaper_citation.lineage.group_title }} Lineage, <a href="{% static 'VirginiaPrinting/records/journal_citations/' %}{{ newspaper_citation.pdf_location }}">see here.</a></p>
 
 {% if newspaper_citation.associates.exists %}
-    <p>There are {{ newspaper_citation.associates.count }} people associated with {{ newspaper_citation.title }}:</p>
+    <p>There {{ newspaper_citation.associates.count|pluralize:"is,are" }} {{ newspaper_citation.associates.count }} pe{{ newspaper_citation.associates.count|pluralize:"rson,ople" }} associated with {{ newspaper_citation.title }}:</p>
     <ul>
     {% for associate in newspaper_citation.associates.all %}
         <li><a href="{% url 'VPDB:bio_detail' associate.id %}">{{ associate.name }}</a></li>

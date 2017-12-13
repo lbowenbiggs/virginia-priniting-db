@@ -51,7 +51,7 @@
 
 <h1>Index of Virginia Printing</h1>
 
-<h2>{{ biographies.count }} biographies matching {{ search_term }}</h2>
+<h2>{{ biographies.count }} biograph{{ biographies.count|pluralize:"y,ies" }} matching {{ search_term }}</h2>
 
 <h3>Field Search</h3>
 <form action="{% url 'VPDB:field_search' %}" method="get">

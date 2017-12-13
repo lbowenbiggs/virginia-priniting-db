@@ -61,7 +61,7 @@
     </a>
 </p>
 
-<p>This lineage covers {{ newspaper_history.newspapercitation_set.count }} variants:</p>
+<p>This lineage covers {{ newspaper_history.newspapercitation_set.count }} variant{{ newspaper_history.newspapercitation_set.count|pluralize }}:</p>
 <ul>
     {% for variant in newspaper_history.newspapercitation_set.all %}
         <li><a href="{% url 'VPDB:news_cite_detail' variant.id %}">{{ variant.variant_number }}: {{ variant.title }}</a></li>
