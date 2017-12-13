@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'indexvir_vpdb',
         'USER': 'indexvir_super',
-        'PASSWORD': '4Katz=^oo^=',
+        "PASSWORD": '4Katz=^oo^=',
         'HOST': 'indexvirginiaprinting.org',
         'PORT': '3306'
     }
