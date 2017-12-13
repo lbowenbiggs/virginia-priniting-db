@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^search/$', views.searchView, name='search'),
     url(r'^search/fields/', views.searchFieldsView, name='field_search'),
 
+    url(r'^about/$', views.aboutView, name='about'),
+
     # ex: /VPDB/news_cite/1/
     url(r'^news_cite/(?P<pk>[0-9]+)/$', views.NewsCiteDetailView.as_view(), name='news_cite_detail'),
     # ex: /VPDB/news_hist/1/

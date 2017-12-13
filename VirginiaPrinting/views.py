@@ -17,6 +17,9 @@ def index(request):
                'num_imprints': imprints}
     return render(request, 'VirginiaPrinting/index.html', context)
 
+def aboutView(request):
+    return render(request, 'VirginiaPrinting/about.html')
+
 def chronologyView(request):
     imprints = ImprintRecord.objects.all().order_by('year')
     context = {'imprints': imprints}
