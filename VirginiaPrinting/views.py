@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord
 
 
@@ -26,22 +27,35 @@ def chronologyView(request):
     return render(request, 'VirginiaPrinting/chronology_imprints.html', context)
 
 def searchView(request):
+    page = request.GET.get('page')
     query_text = request.GET.get('search_term')
+    url_query_string = request.GET.urlencode()
 
     bios = Biography.objects.filter(Q(name__icontains=query_text) | Q(notes__icontains=query_text))
 
+    paginator = Paginator(bios, 15)
+    try:
+        bios_page = paginator.page(page)
+    except PageNotAnInteger:
+        bios_page = paginator.page(1)
+
     context = {'search_term': query_text,
-               'biographies': bios,
+               'biographies': bios_page,
                'biography_name': True,
-               'biography_note': True}
+               'biography_note': True,
+               'url_query_string': url_query_string,
+               'num_biographies': bios.count()
+               }
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
 def searchFieldsView(request):
+    page = request.GET.get('page')
     query_text = request.GET.get('search_term')
     biography_name = request.GET.get('bio_name')
     biography_func = request.GET.get('bio_function')
     biography_note = request.GET.get('bio_notes')
+    url_query_string = request.GET.urlencode()
 
     qName = Q(name__icontains=query_text)
     qFunc = Q(function__icontains=query_text)
@@ -70,11 +84,19 @@ def searchFieldsView(request):
             else:
                 bio = None
 
+    paginator = Paginator(bio, 15)
+    try:
+        bio_page = paginator.page(page)
+    except PageNotAnInteger:
+        bio_page = paginator.page(1)
+
     context = {'search_term': query_text,
-               'biographies': bio,
+               'biographies': bio_page,
                'biography_name': biography_name,
                'biography_func': biography_func,
-               'biography_note': biography_note}
+               'biography_note': biography_note,
+               'url_query_string': url_query_string,
+               'num_biographies': bio.count()}
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
