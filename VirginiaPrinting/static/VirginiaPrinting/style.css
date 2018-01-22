@@ -5,3 +5,7 @@ main {
     padding-right: 20%;
     position: relative;
 }
+
+.bio-result:hover {
+    background-color: lightgrey;
+}

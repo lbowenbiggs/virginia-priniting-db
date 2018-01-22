@@ -72,9 +72,11 @@
 
 
 {%  if biographies %}
-<ul>
     {%  for bio in biographies %}
-    <li><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></li>
+        <div class="bio-result">
+            <h6><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></h6>
+            <p>{{ bio.precis }}</p>
+        </div>
     {%  endfor %}<div class="pagination">
     <span class="step-links">
         {% if biographies.has_previous %}
@@ -92,7 +94,6 @@
         {% endif %}
     </span>
 </div>
-</ul>
 {%  else %}
 <p>No Biographies are available.</p>
 {% endif %}
