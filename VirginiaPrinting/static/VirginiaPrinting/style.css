@@ -9,3 +9,9 @@ main {
 .bio-result:hover {
     background-color: lightgrey;
 }
+
+#browse-menu {
+    text-transform: none;
+    color: white;
+    opacity: .87;
+}

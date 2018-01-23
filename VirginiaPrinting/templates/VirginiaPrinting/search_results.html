@@ -26,8 +26,20 @@
       <!-- Navigation -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="{% url 'VPDB:index' %}">Home</a>
+
+        <button id="browse-menu" class="mdl-button mdl-js-button">
+          Browse...
+        </button>
+
+        <ul class="mdl-menu mdl-js-menu" for="browse-menu">
+            <a href="{% url 'VPDB:bios_index' %}"><li class="mdl-menu__item">Biographies</li></a>
+            <a href="{% url 'VPDB:news_cites_index' %}"><li class="mdl-menu__item">Newspaper Citations</li></a>
+            <a href="{% url 'VPDB:news_hists_index' %}"><li class="mdl-menu__item">Newspaper Lineages</li></a>
+            <a href="{% url 'VPDB:imprints_index' %}"><li class="mdl-menu__item">Imprint Records</li></a>
+            <a href="{% url 'VPDB:chronology_imprints_detail' %}"><li class="mdl-menu__item">Chronologically</li></a>
+        </ul>
+
         <a class="mdl-navigation__link" href="{% url 'VPDB:about' %}">About</a>
-        <a class="mdl-navigation__link" href="{% url 'VPDB:chronology_imprints_detail' %}">Chronology</a>
       </nav>
 
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
