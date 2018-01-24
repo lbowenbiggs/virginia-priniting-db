@@ -68,7 +68,10 @@
 {%  if imprints %}
 <ul>
     {%  for imprint in imprints %}
-    <li><a href="{% url 'VPDB:imprint_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></li>
+    <div class="record-result">
+        <h6><a href="{% url 'VPDB:imprint_detail' imprint.imprint_number %}">{{ imprint.short_title }}</a></h6>
+        <p>{{ imprint.title }}</p>
+    </div>
     {%  endfor %}
 </ul>
 {%  else %}

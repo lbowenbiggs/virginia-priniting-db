@@ -65,7 +65,11 @@
 {%  if news_cites %}
 <ul>
     {%  for news_cite in news_cites %}
-    <li><a href="{% url 'VPDB:news_cite_detail' news_cite.id %}">{{ news_cite.title }}</a></li>
+    <div class="record-result">
+        <h6><a href="{% url 'VPDB:news_cite_detail' news_cite.id %}">{{ news_cite.title }}</a></h6>
+        <p>Lineage: {{ news_cite.lineage }}</p>
+        <p>Proprietors: {{ news_cite.proprietors }}</p>
+    </div>
     {%  endfor %}
 </ul>
 {%  else %}

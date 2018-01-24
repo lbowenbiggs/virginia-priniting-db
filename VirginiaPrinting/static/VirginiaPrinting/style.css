@@ -6,7 +6,7 @@ main {
     position: relative;
 }
 
-.bio-result:hover {
+.record-result:hover {
     background-color: lightgrey;
 }
 
