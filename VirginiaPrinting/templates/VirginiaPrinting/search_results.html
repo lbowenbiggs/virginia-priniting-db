@@ -81,33 +81,33 @@
     <div class="page-content">
 <h1>Results</h1>
 
-<h2>{{ num_biographies }} biograph{{num_biographies|pluralize:"y,ies" }} matching "{{ search_term }}"</h2>
+<h2>{{ num_results }} record{{num_results|pluralize }} matching "{{ search_term }}"</h2>
 
-{%  if biographies %}
-    {%  for bio in biographies %}
+{%  if results %}
+    {%  for result in results %}
         <div class="bio-result">
-            <h6><a href="{% url 'VPDB:bio_detail' bio.id %}">{{ bio.name }}</a></h6>
-            <p>{{ bio.precis }}</p>
+            <h6><a href="{{ result.link }}">{{ result.title }}</a></h6>
+            <p>{{ result.excerpt }}</p>
         </div>
     {%  endfor %}<div class="pagination">
     <span class="step-links">
-        {% if biographies.has_previous %}
+        {% if results.has_previous %}
             <a href="?{{ url_query_string }}&page=1">&laquo; first</a>
-            <a href="?{{ url_query_string }}&page={{ biographies.previous_page_number }}">previous</a>
+            <a href="?{{ url_query_string }}&page={{ results.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
-            Page {{ biographies.number }} of {{ biographies.paginator.num_pages }}.
+            Page {{ results.number }} of {{ results.paginator.num_pages }}.
         </span>
 
-        {% if biographies.has_next %}
-            <a href="?{{ url_query_string }}&page={{ biographies.next_page_number }}">next</a>
-            <a href="?{{ url_query_string }}&page={{ biographies.paginator.num_pages }}">last &raquo;</a>
+        {% if results.has_next %}
+            <a href="?{{ url_query_string }}&page={{ results.next_page_number }}">next</a>
+            <a href="?{{ url_query_string }}&page={{ results.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>
 {%  else %}
-<p>No Biographies are available.</p>
+<p>No Results are available.</p>
 {% endif %}
     </div>
   </main>

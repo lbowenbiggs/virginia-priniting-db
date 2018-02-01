@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord
+from .models import NewspaperCitation, NewspaperHistory, Biography, ImprintRecord, GenericSearchResult
 
 
 # Create your views here.
@@ -26,25 +26,36 @@ def chronologyView(request):
     context = {'imprints': imprints}
     return render(request, 'VirginiaPrinting/chronology_imprints.html', context)
 
+
 def searchView(request):
     page = request.GET.get('page')
     query_text = request.GET.get('search_term')
     url_query_string = request.GET.urlencode()
 
-    bios = Biography.objects.filter(Q(name__icontains=query_text) | Q(notes__icontains=query_text))
+    bios = Biography.objects.filter(Q(name__icontains=query_text) |
+                                    Q(notes__icontains=query_text))
+    imprints = ImprintRecord.objects.filter(Q(title__icontains=query_text) |
+                                            Q(short_title__icontains=query_text) |
+                                            Q(notes__icontains=query_text))
 
-    paginator = Paginator(bios, 15)
+    results = []
+    for bio in bios:
+        results.append(GenericSearchResult(bio, 1))
+    for imprint in imprints:
+        results.append(GenericSearchResult(imprint, 1))
+
+    paginator = Paginator(results, 15)
     try:
-        bios_page = paginator.page(page)
+        results_page = paginator.page(page)
     except PageNotAnInteger:
-        bios_page = paginator.page(1)
+        results_page = paginator.page(1)
 
     context = {'search_term': query_text,
-               'biographies': bios_page,
+               'results': results_page,
                'biography_name': True,
                'biography_note': True,
                'url_query_string': url_query_string,
-               'num_biographies': bios.count()
+               'num_results': bios.count()
                }
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
@@ -99,7 +110,7 @@ def searchFieldsView(request):
         bio_page = paginator.page(1)
 
     context = {'search_term': query_text,
-               'biographies': bio_page,
+               'results': bio_page,
                'biography_name': biography_name,
                'biography_func': biography_func,
                'biography_note': biography_note,

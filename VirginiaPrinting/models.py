@@ -1,5 +1,25 @@
 from django.db import models
+from django.urls import reverse
 
+# Generic Model used to hold Search Results
+class GenericSearchResult():
+    score = models.DecimalField()
+    title = models.CharField(max_length=200)
+    excerpt = models.TextField(blank=True)
+    link = models.URLField()
+    record_type = models.Model
+
+    def __init__(self, record, score):
+        if isinstance(record, Biography):
+            self.title = record.name
+            self.excerpt = record.precis
+            self.link = record.get_absolute_url()
+            self.record_type = Biography.__class__
+        elif isinstance(record, ImprintRecord):
+            self.title = record.short_title
+            self.excerpt = record.title
+            self.link = record.get_absolute_url()
+            self.record_type = ImprintRecord.__class__
 
 # Expanded Models
 class Biography(models.Model):
@@ -18,7 +38,10 @@ class Biography(models.Model):
     pdf_location = models.FilePathField(path="~/PycharmProjects/VPDB/static/biographies", blank=True)
 
     def __str__(self):
-        return self.name
+        return self.nameself.id
+
+    def get_absolute_url(self):
+        return reverse('VPDB:bio_detail', args=[self.id])
 
     class Meta:
         verbose_name_plural = "biographies"
@@ -39,6 +62,9 @@ class ImprintRecord(models.Model):
 
     notes = models.TextField(blank=True)
     pdf_location = models.FilePathField(path="static/imprints", blank=True)
+
+    def get_absolute_url(self):
+        return reverse('VPDB:imprint_detail', args=[str(self.imprint_number)])
 
     def __str__(self):
         return str(self.imprint_number) + ": " + self.short_title
