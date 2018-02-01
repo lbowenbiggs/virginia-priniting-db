@@ -52,6 +52,10 @@ body{
     text-align: center;
 }
 
+.search_term_index {
+    background-color: transparent;
+}
+
 .index-text{
     font-size: 1.2em;
     text-align: center;

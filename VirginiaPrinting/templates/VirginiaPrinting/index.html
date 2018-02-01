@@ -78,9 +78,12 @@
            <br>
            <br>
            <span class="search-format">
-      <form action="{% url 'VPDB:search' %}" method="get">
-          <input type="text" name="search_term" id="search_term" placeholder="Search the Database!">
-          <input type="submit" value="Search">
+      <form action="{% url 'VPDB:search' %}" method="get" id="search">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input search_term_index" type="text" id="search_term" name="search_term">
+                <label class="mdl-textfield__label" for="sample1">Search the Database</label>
+            </div>
+          <button type="submit" formid="search" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Search</button>
       </form>
            </span>
            <span class="advanced-search-link"><a href="{% url 'VPDB:advanced_search' %}">Advanced Search</a></span>
