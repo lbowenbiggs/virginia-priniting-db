@@ -2,26 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About</title>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <title>Index of Virginia Printing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.brown-deep_orange.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
     {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/default.css' %}" />
 </head>
+
 <body>
-<!-- Uses a header that scrolls with the text, rather than staying
-  locked at the top -->
 <div class="mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--scroll">
-    <div class="mdl-layout__header-row">
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row title-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Index of Virginia Printing</span>
-      <!-- Add spacer, to align navigation to the right -->
+      <span class="title-link"><a href="{% url 'VPDB:index' %}">Index of Virginia Printing</a></span>
       <div class="mdl-layout-spacer"></div>
+        <!-- Expandable Searchbar -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="fixed-header-drawer-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+            <form action="{% url 'VPDB:search' %}" method="get">
+          <input class="mdl-textfield__input" type="text" name="search_term" id="fixed-header-drawer-exp" placeholder="Search the Database!">
+          <input class="hidden" type="submit">
+            </form>
+        </div>
+        </div>
+    </div>
+<div class="mdl-layout__header-row">
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="{% url 'VPDB:index' %}">Home</a>
@@ -40,43 +55,12 @@
 
         <a class="mdl-navigation__link" href="{% url 'VPDB:about' %}">About</a>
       </nav>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="fixed-header-drawer-exp">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-            <form action="{% url 'VPDB:search' %}" method="get">
-          <input class="mdl-textfield__input" type="text" name="search_term"
-                 id="fixed-header-drawer-exp">
-            <input class="hidden" type="submit">
-                </form>
-        </div>
-      </div>
-
-    </div>
+</div>
   </header>
+
   <main class="mdl-layout__content">
     <div class="page-content">
-
-
 <h1>Project Description</h1>
-        <p>This Index offers updated and updateable descriptions of the people, imprints, and journals that were a part of Virginia's print trade from its first offering in 1682 through those produced for the 1820 General Assembly. And as such it represents one approach to the future of scholarly reference works, particularly ones with a bibliographic or biographic focus.</p>
-<p>This resource is comprised of three elements, called collections herein.</p>
-<ul>
-<li>The first component is a series of short biographies for each of the more than 550 individuals known to have worked in the trade, whether as tradesmen, editors, or publishers.</li>
-</ul>
-<ul>
-<li>The second collection offers a bibliographic record for each of the nearly 3500 imprints produced in Virginia from 1730 to 1820, complete with cross-references to the standard bibliographies of early American imprints.</li>
-</ul>
-<ul>
-<li>The third element is a collection of narrative histories for each of the 118 newspapers that were started in Virginia before 1820, covering their evolution and various incarnations, so encompassing more than 400 individual titles.</li>
-</ul>
-<p>&nbsp;Using this site's search capabilities, this Index allows researchers to better situate all three components of the printing trade in their own investigations into Virginia's history.</p>
-<p>The three collections will be populated as they are coalated in the coming months.</p>
-
     </div>
   </main>
 </div>

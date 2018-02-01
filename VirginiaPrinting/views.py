@@ -49,6 +49,14 @@ def searchView(request):
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
+def searchAdvancedView(request):
+    page = request.GET.get('page')
+    url_query_string = request.GET.urlencode()
+
+    context = {}
+
+    return render(request, 'VirginiaPrinting/advanced_search.html', context)
+
 def searchFieldsView(request):
     page = request.GET.get('page')
     query_text = request.GET.get('search_term')
@@ -84,7 +92,7 @@ def searchFieldsView(request):
             else:
                 bio = None
 
-    paginator = Paginator(bio, 15)
+    paginator = Paginator(bio, 5)
     try:
         bio_page = paginator.page(page)
     except PageNotAnInteger:

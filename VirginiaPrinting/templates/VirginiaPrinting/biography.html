@@ -2,29 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ biography.name }}</title>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <title>Index of Virginia Printing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.brown-deep_orange.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
     {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/style.css' %}" />
-
-
+<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/default.css' %}" />
 </head>
-<body>
 
-<!-- Uses a header that scrolls with the text, rather than staying
-  locked at the top -->
+<body>
 <div class="mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--scroll">
-    <div class="mdl-layout__header-row">
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <div class="mdl-layout__header-row title-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Index of Virginia Printing</span>
-      <!-- Add spacer, to align navigation to the right -->
+      <span class="title-link"><a href="{% url 'VPDB:index' %}">Index of Virginia Printing</a></span>
       <div class="mdl-layout-spacer"></div>
+        <!-- Expandable Searchbar -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+               for="fixed-header-drawer-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+            <form action="{% url 'VPDB:search' %}" method="get">
+          <input class="mdl-textfield__input" type="text" name="search_term" id="fixed-header-drawer-exp" placeholder="Search the Database!">
+          <input class="hidden" type="submit">
+            </form>
+        </div>
+        </div>
+    </div>
+<div class="mdl-layout__header-row">
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="{% url 'VPDB:index' %}">Home</a>
@@ -43,28 +55,11 @@
 
         <a class="mdl-navigation__link" href="{% url 'VPDB:about' %}">About</a>
       </nav>
-
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-        <label class="mdl-button mdl-js-button mdl-button--icon"
-               for="fixed-header-drawer-exp">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-            <form action="{% url 'VPDB:search' %}" method="get">
-          <input class="mdl-textfield__input" type="text" name="search_term"
-                 id="fixed-header-drawer-exp">
-            <input class="hidden" type="submit">
-                </form>
-        </div>
-      </div>
-
-    </div>
+</div>
   </header>
+
   <main class="mdl-layout__content">
     <div class="page-content">
-
-
 <p><strong>Name:</strong> {{ biography.name }}</p>
 {% if biography.formal_name %}
 <p><strong>Formal Name:</strong> {{ biography.formal_name }}</p>

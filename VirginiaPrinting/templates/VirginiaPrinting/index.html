@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/style.css' %}" />
-
 <head>
     <meta charset="UTF-8">
     <title>Index of Virginia Printing</title>
@@ -14,16 +9,15 @@
 
     {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'VirginiaPrinting/default.css' %}" />
 </head>
-<body>
 
+<body>
 <div class="mdl-layout mdl-js-layout">
   <header class="mdl-layout__header mdl-layout__header--waterfall">
     <div class="mdl-layout__header-row title-row">
       <!-- Title -->
-      <span class="mdl-layout-title">Index of Virginia Printing</span>
-      <!-- Add spacer, to align navigation to the right -->
+      <span class="title-link"><a href="{% url 'VPDB:index' %}">Index of Virginia Printing</a></span>
       <div class="mdl-layout-spacer"></div>
         <!-- Expandable Searchbar -->
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
@@ -34,14 +28,14 @@
         </label>
         <div class="mdl-textfield__expandable-holder">
             <form action="{% url 'VPDB:search' %}" method="get">
-          <input class="mdl-textfield__input" type="text" name="search_term"
-                 id="fixed-header-drawer-exp">
-            <input class="hidden" type="submit">
-                </form>
+          <input class="mdl-textfield__input" type="text" name="search_term" id="fixed-header-drawer-exp" placeholder="Search the Database!">
+          <input class="hidden" type="submit">
+            </form>
         </div>
         </div>
     </div>
 <div class="mdl-layout__header-row">
+    <!-- Add spacer, to align navigation to the right -->
     <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
       <nav class="mdl-navigation">
@@ -64,23 +58,35 @@
 </div>
   </header>
   <main class="mdl-layout__content">
-    <div class="page-content">
-
-<h1>Index of Virginia Printing</h1>
-
-<p>
-    Explore the history of the printing trade in Virginia before 1820.
-    This website has a database with <a href="{% url 'VPDB:bios_index' %}">{{ num_bios }} biographies</a> of people involved in Virgina's printing trade.
-    It also has <a href="{% url 'VPDB:imprints_index' %}">imprint records for {{ num_imprints }} documents</a> printed in Virginia, including <a href="{% url 'VPDB:news_cites_index' %}">{{ num_news_cites }} variants of newspapers</a> grouped into <a href="{% url 'VPDB:news_hists_index' %}">{{ num_news_hists }} lineages.</a>
-</p>
-
-<h3>Search</h3>
-<form action="{% url 'VPDB:search' %}" method="get">
-    <input type="text" name="search_term" id="search_term">
-    <label for="search_term">Search Term</label>
-    <input type="submit" value="Search">
-</form>
-    </div>
+       <div class="page-content">
+           <span class="index-text">
+               <br>
+               <br>
+               This Index offers updated and updateable descriptions of the people, imprints, and journals that were a part of Virginia's print trade from its first offering in 1682 through those produced for the 1820 General Assembly. And as such it represents one approach to the future of scholarly reference works, particularly ones with a bibliographic or biographic focus.
+               <br>
+               <br>
+               This resource is comprised of three elements:
+               <span class="list-text">
+               <li>The first is a series of short biographies for each of the <a href="{% url 'VPDB:bios_index' %}">{{ num_bios }} individuals</a> known to have worked in the trade, whether as tradesmen, editors, or publishers.</li>
+               <br>
+               <li>The second element offers a bibliographic record for each of the <a href="{% url 'VPDB:imprints_index' %}">{{ num_imprints }} imprint documents</a> produced in Virginia from 1730 to 1820, complete with cross-references to the standard bibliographies of early American imprints.</li>
+               <br>
+               <li>The third element is a collection of narrative histories for each of the <a href="{% url 'VPDB:news_hists_index' %}">{{ num_news_hists }} newspapers.</a> that were started in Virginia before 1820, covering their evolution and various incarnations, so encompassing <a href="{% url 'VPDB:news_cites_index' %}">{{ num_news_cites }} individual titles</a>.</li>
+               <br>
+               </span>
+               Using this site's search capabilities, this Index allows researchers to better situate all three components of the printing trade in their own investigations into Virginia's history.</span>
+           <br>
+           <br>
+           <span class="search-format">
+      <form action="{% url 'VPDB:search' %}" method="get">
+          <input type="text" name="search_term" id="search_term" placeholder="Search the Database!">
+          <input type="submit" value="Search">
+      </form>
+           </span>
+           <span class="advanced-search-link"><a href="{% url 'VPDB:advanced_search' %}">Advanced Search</a></span>
+       </div>
+      <br>
+      <br>
   </main>
 </div>
 </body>

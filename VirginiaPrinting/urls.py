@@ -9,6 +9,7 @@ urlpatterns = [
 
     url(r'^search/$', views.searchView, name='search'),
     url(r'^search/fields/', views.searchFieldsView, name='field_search'),
+    url(r'^search/advanced/', views.searchAdvancedView, name='advanced_search'),
 
     url(r'^about/$', views.aboutView, name='about'),
 
