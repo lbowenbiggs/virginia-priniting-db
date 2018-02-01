@@ -58,8 +58,8 @@
 </div>
   </header>
 
-<span class="horizontal_boxes">
-    <span class="refine_search">
+<div class="mdl-grid results-layout">
+    <div class="mdl-cell mdl-cell--2-col">
 <h3>Refine Search</h3>
 <form action="{% url 'VPDB:field_search' %}" method="get" name="refine_search">
     <input type="checkbox" name="bio_name" id="bio_name" value="name" {% if biography_name %}checked{% endif %}>
@@ -73,11 +73,11 @@
     <input type="text" name="search_term" id="search_term" value="{{ search_term }}" placeholder="Refine your search!">
     <input type="submit" value="Search">
 </form>
-    </span>
+    </div>
 
 
-    <span class="results_format">
-  <main class="mdl-layout__content">
+    <div class="mdl-cell mdl-cell--8-col">
+  <main class="mdl-layout__content display-results">
     <div class="page-content">
 <h1>Results</h1>
 
@@ -112,6 +112,8 @@
     </div>
   </main>
 </div>
-</span>
+    <div class="mdl-cell mdl-cell--2-col"></div>
+</div>
+</div>
 </body>
 </html>

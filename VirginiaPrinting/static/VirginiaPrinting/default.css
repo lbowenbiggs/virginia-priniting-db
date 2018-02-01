@@ -37,6 +37,10 @@ body{
     opacity: .87;
 }
 
+#fixed-header-drawer-exp {
+    color: darkslategrey;
+}
+
 .title-row {
     background: url('richmond1800banner.jpg');
     background-repeat: no-repeat;
@@ -74,6 +78,10 @@ body{
     margin-left: -25%;
 }
 
+.display-results {
+    width: 100%;
+}
+
 .refine_search {
     float: left;
     margin-left: 10%;
@@ -83,8 +91,11 @@ body{
     margin-right: auto;
 }
 
+.results-layout {
+    padding-top: 0;
+}
+
 .horizontal_boxes{
-    overflow: hidden;
-    height: 100%;
+    overflow: visible;
 
 }
