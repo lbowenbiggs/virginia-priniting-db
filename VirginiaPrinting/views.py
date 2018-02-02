@@ -39,6 +39,8 @@ def searchView(request):
                                             Q(notes__icontains=query_text))
     news_cites = NewspaperCitation.objects.filter(Q(title__icontains=query_text) |
                                                   Q(notes__icontains=query_text))
+    news_hists = NewspaperHistory.objects.filter(Q(group_title__icontains=query_text) |
+                                                 Q(notes__icontains=query_text))
 
     results = []
     for bio in bios:
@@ -47,6 +49,8 @@ def searchView(request):
         results.append(GenericSearchResult(imprint, 1))
     for news_cite in news_cites:
         results.append(GenericSearchResult(news_cite, 1))
+    for news_hist in news_hists:
+        results.append(GenericSearchResult(news_hist, 1))
 
     paginator = Paginator(results, 15)
     try:
@@ -59,7 +63,7 @@ def searchView(request):
                'biography_name': True,
                'biography_note': True,
                'url_query_string': url_query_string,
-               'num_results': bios.count()
+               'num_results': results.__len__
                }
 
     return render(request, 'VirginiaPrinting/search_results.html', context)

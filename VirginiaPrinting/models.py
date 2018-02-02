@@ -25,6 +25,11 @@ class GenericSearchResult():
             self.excerpt = "Member of " + record.lineage.group_title + " lineage. Published from " + record.start_date + " to " + record.end_date
             self.link = record.get_absolute_url()
             self.record_type = NewspaperCitation.__class__
+        elif isinstance(record, NewspaperHistory):
+            self.title = record.group_title
+            self.excerpt = record.notes[:200] + "..."
+            self.link = record.get_absolute_url()
+            self.record_type = NewspaperHistory.__class__
 
 # Expanded Models
 class Biography(models.Model):
@@ -81,6 +86,9 @@ class NewspaperHistory(models.Model):
 
     notes = models.TextField(blank=True)
     pdf_location = models.FilePathField(path="~/PycharmProjects/VPDB/static/journal_histories", blank=True)
+
+    def get_absolute_url(self):
+        return reverse('VPDB:news_hist_detail', args=[str(self.pk)])
 
     def __str__(self):
         return self.group_title
