@@ -20,6 +20,11 @@ class GenericSearchResult():
             self.excerpt = record.title
             self.link = record.get_absolute_url()
             self.record_type = ImprintRecord.__class__
+        elif isinstance(record, NewspaperCitation):
+            self.title = record.title
+            self.excerpt = "Member of " + record.lineage.group_title + " lineage. Published from " + record.start_date + " to " + record.end_date
+            self.link = record.get_absolute_url()
+            self.record_type = NewspaperCitation.__class__
 
 # Expanded Models
 class Biography(models.Model):
@@ -38,7 +43,7 @@ class Biography(models.Model):
     pdf_location = models.FilePathField(path="~/PycharmProjects/VPDB/static/biographies", blank=True)
 
     def __str__(self):
-        return self.nameself.id
+        return self.name
 
     def get_absolute_url(self):
         return reverse('VPDB:bio_detail', args=[self.id])
@@ -97,6 +102,9 @@ class NewspaperCitation(models.Model):
 
     notes = models.TextField(blank=True)
     pdf_location=models.FilePathField(path="~/PycharmProjects/VPDB/static/journal_citations", blank=True)
+
+    def get_absolute_url(self):
+        return reverse('VPDB:news_cite_detail', args=[str(self.pk)])
 
     def __str__(self):
         return self.title

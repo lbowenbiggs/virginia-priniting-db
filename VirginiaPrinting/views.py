@@ -37,12 +37,16 @@ def searchView(request):
     imprints = ImprintRecord.objects.filter(Q(title__icontains=query_text) |
                                             Q(short_title__icontains=query_text) |
                                             Q(notes__icontains=query_text))
+    news_cites = NewspaperCitation.objects.filter(Q(title__icontains=query_text) |
+                                                  Q(notes__icontains=query_text))
 
     results = []
     for bio in bios:
         results.append(GenericSearchResult(bio, 1))
     for imprint in imprints:
         results.append(GenericSearchResult(imprint, 1))
+    for news_cite in news_cites:
+        results.append(GenericSearchResult(news_cite, 1))
 
     paginator = Paginator(results, 15)
     try:
