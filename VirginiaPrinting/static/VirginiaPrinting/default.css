@@ -37,6 +37,10 @@ body{
     opacity: .87;
 }
 
+#fixed-header-drawer-exp {
+    color: darkslategrey;
+}
+
 .title-row {
     background: url('richmond1800banner.jpg');
     background-repeat: no-repeat;
@@ -46,6 +50,10 @@ body{
 
 .search-format{
     text-align: center;
+}
+
+.search_term_index {
+    background-color: transparent;
 }
 
 .index-text{
@@ -64,18 +72,18 @@ body{
 .mdl-layout__content{
     text-align: left;
     background-color: rgb(248, 243, 219);
-    margin-left: 25%;
-    padding: 1px;
-    width: 800px;
-    height:100%;
-    padding-left: 35pt;
-    padding-right: 10pt;
-    padding-bottom: 100%;
-    margin-bottom: -100%;
+    margin: auto;
+    overflow: visible;
+    padding-left: 25pt;
+    padding-right: 25pt;
 }
 
 .results_format{
     margin-left: -25%;
+}
+
+.display-results {
+    width: 100%;
 }
 
 .refine_search {
@@ -87,8 +95,15 @@ body{
     margin-right: auto;
 }
 
-.horizontal_boxes{
-    overflow: hidden;
-    height: 100%;
+.results-layout {
+    padding-top: 0;
+}
 
+.horizontal_boxes{
+    overflow: visible;
+
+}
+
+ul {
+    list-style: none;
 }
