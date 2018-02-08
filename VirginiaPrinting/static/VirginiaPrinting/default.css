@@ -103,3 +103,7 @@ body{
     overflow: visible;
 
 }
+
+ul {
+    list-style: none;
+}

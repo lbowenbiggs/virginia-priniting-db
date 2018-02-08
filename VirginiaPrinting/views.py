@@ -88,30 +88,27 @@ def searchFieldsView(request):
     qFunc = Q(function__icontains=query_text)
     qNotes = Q(notes__icontains=query_text)
 
-    if biography_name:
-        if biography_func:
-            if biography_note:
-                bio = Biography.objects.filter(qName | qFunc | qNotes)
-            else:
-                bio = Biography.objects.filter(qName | qFunc)
-        else:
-            if biography_note:
-                bio = Biography.objects.filter(qName | qNotes)
-            else:
-                bio = Biography.objects.filter(qName)
-    else:
-        if biography_func:
-            if biography_note:
-                bio = Biography.objects.filter(qFunc | qNotes)
-            else:
-                bio = Biography.objects.filter(qFunc)
-        else:
-            if biography_note:
-                bio = Biography.objects.filter(qNotes)
-            else:
-                bio = None
+    qList = []
 
-    paginator = Paginator(bio, 5)
+    if biography_name:
+        qList.append(qName)
+    if biography_note:
+        qList.append(qNotes)
+    if biography_func:
+        qList.append(qFunc)
+
+    query = qList.pop()
+
+    for item in qList:
+        query |= item
+
+    bios = Biography.objects.filter(query)
+
+    results = []
+    for bio in bios:
+        results.append(GenericSearchResult(bio, 1))
+
+    paginator = Paginator(results, 5)
     try:
         bio_page = paginator.page(page)
     except PageNotAnInteger:
@@ -123,7 +120,7 @@ def searchFieldsView(request):
                'biography_func': biography_func,
                'biography_note': biography_note,
                'url_query_string': url_query_string,
-               'num_biographies': bio.count()}
+               'num_results': results.__len__}
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
