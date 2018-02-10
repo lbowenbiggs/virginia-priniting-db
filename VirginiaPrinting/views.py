@@ -26,7 +26,6 @@ def chronologyView(request):
     context = {'imprints': imprints}
     return render(request, 'VirginiaPrinting/chronology_imprints.html', context)
 
-
 def searchView(request):
     page = request.GET.get('page')
     query_text = request.GET.get('search_term')
@@ -68,14 +67,6 @@ def searchView(request):
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
 
-def searchAdvancedView(request):
-    page = request.GET.get('page')
-    url_query_string = request.GET.urlencode()
-
-    context = {}
-
-    return render(request, 'VirginiaPrinting/advanced_search.html', context)
-
 def searchFieldsView(request):
     page = request.GET.get('page')
     query_text = request.GET.get('search_term')
@@ -110,12 +101,12 @@ def searchFieldsView(request):
 
     paginator = Paginator(results, 5)
     try:
-        bio_page = paginator.page(page)
+        results_page = paginator.page(page)
     except PageNotAnInteger:
-        bio_page = paginator.page(1)
+        results_page = paginator.page(1)
 
     context = {'search_term': query_text,
-               'results': bio_page,
+               'results': results_page,
                'biography_name': biography_name,
                'biography_func': biography_func,
                'biography_note': biography_note,
@@ -129,24 +120,28 @@ class NewsCitesListView(generic.ListView):
     model = NewspaperCitation
     template_name = 'VirginiaPrinting/newspaper_citation_index.html'
     context_object_name = 'news_cites'
+    paginate_by = 10
 
 
 class NewsHistsListView(generic.ListView):
     model = NewspaperHistory
     template_name = 'VirginiaPrinting/newspaper_history_index.html'
     context_object_name = 'news_hists'
+    paginate_by = 10
 
 
 class BiosListView(generic.ListView):
     model = Biography
     template_name = 'VirginiaPrinting/biography_index.html'
     context_object_name = 'bios'
+    paginate_by = 10
 
 
 class ImprintsListView(generic.ListView):
     model = ImprintRecord
     template_name = 'VirginiaPrinting/imprint_record_index.html'
     context_object_name = 'imprints'
+    paginate_by = 10
 
 
 class NewsCiteDetailView(generic.DetailView):

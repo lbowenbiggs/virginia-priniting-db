@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Index of Virginia Printing</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.brown-deep_orange.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.brown-deep_orange.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
     {% load static %}
 
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-<div class="mdl-layout mdl-js-layout">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header mdl-layout__header--waterfall">
     <div class="mdl-layout__header-row title-row">
       <!-- Title -->
@@ -73,6 +73,25 @@
     </div>
     {%  endfor %}
 </ul>
+    {% if is_paginated %}
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?{{ url_query_string }}&page=1">&laquo; first</a>
+            <a href="?{{ url_query_string }}&page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?{{ url_query_string }}&page={{ page_obj.next_page_number }}">next</a>
+            <a href="?{{ url_query_string }}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+        {% endif %}
 {%  else %}
 <p>No Imprint Records are available.</p>
 {% endif %}

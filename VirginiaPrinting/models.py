@@ -14,22 +14,25 @@ class GenericSearchResult():
             self.title = record.name
             self.excerpt = record.precis
             self.link = record.get_absolute_url()
-            self.record_type = Biography.__class__
+            self.record_type = "Biography"
         elif isinstance(record, ImprintRecord):
             self.title = record.short_title
             self.excerpt = record.title
             self.link = record.get_absolute_url()
-            self.record_type = ImprintRecord.__class__
+            self.record_type = "Imprint Record"
         elif isinstance(record, NewspaperCitation):
             self.title = record.title
-            self.excerpt = "Member of " + record.lineage.group_title + " lineage. Published from " + record.start_date + " to " + record.end_date
+            if hasattr(record, '_lineage_cache'):
+                self.excerpt = "Member of " + record.lineage.group_title + " lineage. Published from " + record.start_date + " to " + record.end_date
+            else:
+                self.excerpt = "Not a member of any lineage. Published from " + record.start_date + " to " + record.end_date
             self.link = record.get_absolute_url()
-            self.record_type = NewspaperCitation.__class__
+            self.record_type = "Newspaper Citation"
         elif isinstance(record, NewspaperHistory):
             self.title = record.group_title
             self.excerpt = record.notes[:200] + "..."
             self.link = record.get_absolute_url()
-            self.record_type = NewspaperHistory.__class__
+            self.record_type = "Newspaper Lineage"
 
 # Expanded Models
 class Biography(models.Model):
