@@ -66,7 +66,12 @@
     <div class="container">
         <ul>
             <li>
-                <input type="checkbox" id="biographies"><label for="biographies">Biographies</label>
+                <input type="checkbox"
+                       id="biographies"
+                       value="bio"
+                       name="bio"
+                       {% if biography %}checked{% endif %}>
+                <label for="biographies">Biographies</label>
                 <ul>
                     <li><label><input type="checkbox"
                                       id="bio_name"
@@ -99,11 +104,37 @@
     <div class="container">
         <ul>
             <li>
-                <input type="checkbox" id="imprints"><label for="imprints">Imprint Records</label>
+                <input type="checkbox"
+                       id="imprint"
+                       value="imprint"
+                       name="imprint"
+                       {% if imprint %}checked{% endif %}>
+                <label for="imprint">Imprint Records</label>
                 <ul>
-                    <li><label><input type="checkbox" class="suboption_imprints">Title</label></li>
-                    <li><label><input type="checkbox" class="suboption_imprints">Short Title</label></li>
-                    <li><label><input type="checkbox" class="suboption_imprints">Notes</label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_title"
+                                      class="suboption_imprints"
+                                      value="title"
+                                      name="imprint_title"
+                                      {% if imprint_title %}checked{% endif %}>
+                        Title
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_short_title"
+                                      class="suboption_imprints"
+                                      value="short_title"
+                                      name="imprint_short_title"
+                                      {% if imprint_short_title %}checked{% endif %}>
+                        Short Title
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_notes"
+                                      class="suboption_imprints"
+                                      value="imprint_notes"
+                                      name="imprint_notes"
+                                      {% if imprint_notes %}checked{% endif %}>
+                        Notes
+                    </label></li>
                 </ul>
             </li>
         </ul>

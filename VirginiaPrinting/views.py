@@ -59,8 +59,19 @@ def searchView(request):
 
     context = {'search_term': query_text,
                'results': results_page,
+               'biography': True,
                'biography_name': True,
                'biography_note': True,
+               'imprint': True,
+               'imprint_title': True,
+               'imprint_short_title': True,
+               'imprint_notes': True,
+               'news_cite': True,
+               'news_cite_title': True,
+               'news_cite_notes': True,
+               'news_hist': True,
+               'news_hist_group_title': True,
+               'news_hist_notes': True,
                'url_query_string': url_query_string,
                'num_results': results.__len__
                }
@@ -70,34 +81,56 @@ def searchView(request):
 def searchFieldsView(request):
     page = request.GET.get('page')
     query_text = request.GET.get('search_term')
+    biography = request.GET.get('bio')
     biography_name = request.GET.get('bio_name')
     biography_func = request.GET.get('bio_function')
     biography_note = request.GET.get('bio_notes')
+    imprint = request.GET.get('imprint')
+    imprint_title = request.GET.get('imprint_title')
+    imprint_short_title = request.GET.get('imprint_short_title')
+    imprint_notes = request.GET.get('imprint_notes')
     url_query_string = request.GET.urlencode()
 
-    qName = Q(name__icontains=query_text)
-    qFunc = Q(function__icontains=query_text)
-    qNotes = Q(notes__icontains=query_text)
-
-    qList = []
-
-    if biography_name:
-        qList.append(qName)
-    if biography_note:
-        qList.append(qNotes)
-    if biography_func:
-        qList.append(qFunc)
-
-    query = qList.pop()
-
-    for item in qList:
-        query |= item
-
-    bios = Biography.objects.filter(query)
-
     results = []
-    for bio in bios:
-        results.append(GenericSearchResult(bio, 1))
+
+    if biography:
+        qList_bios = []
+
+        if biography_name:
+            qList_bios.append(Q(name__icontains=query_text))
+        if biography_note:
+            qList_bios.append(Q(notes__icontains=query_text))
+        if biography_func:
+            qList_bios.append(Q(function__icontains=query_text))
+
+        query = qList_bios.pop()
+
+        for item in qList_bios:
+            query |= item
+
+        bios = Biography.objects.filter(query)
+
+        for bio in bios:
+            results.append(GenericSearchResult(bio, 1))
+    if imprint:
+        qList_imprints = []
+
+        if imprint_title:
+            qList_imprints.append(Q(title__icontains=query_text))
+        if imprint_short_title:
+            qList_imprints.append(Q(short_title__icontains=query_text))
+        if imprint_notes:
+            qList_imprints.append(Q(notes__icontains=query_text))
+
+        query = qList_imprints.pop()
+
+        for item in qList_imprints:
+            query |= item
+
+        imprints = ImprintRecord.objects.filter(query)
+
+        for imprint in imprints:
+            results.append(GenericSearchResult(imprint, 1))
 
     paginator = Paginator(results, 5)
     try:
@@ -107,10 +140,21 @@ def searchFieldsView(request):
 
     context = {'search_term': query_text,
                'results': results_page,
+               'biography': biography,
                'biography_name': biography_name,
                'biography_func': biography_func,
                'biography_note': biography_note,
                'url_query_string': url_query_string,
+               'imprint': imprint,
+               'imprint_title': imprint_title,
+               'imprint_short_title': imprint_short_title,
+               'imprint_notes': imprint_notes,
+               'news_cite': True,
+               'news_cite_title': True,
+               'news_cite_notes': True,
+               'news_hist': True,
+               'news_hist_group_title': True,
+               'news_hist_notes': True,
                'num_results': results.__len__}
 
     return render(request, 'VirginiaPrinting/search_results.html', context)
