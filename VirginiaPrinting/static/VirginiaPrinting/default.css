@@ -42,10 +42,10 @@ body{
 }
 
 .title-row {
-    background: url('richmond1800banner.jpg');
+    background: url('richmondprogress1800.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100px;
+    height: 150px;
 }
 
 .search-format{
