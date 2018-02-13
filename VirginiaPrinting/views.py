@@ -89,6 +89,12 @@ def searchFieldsView(request):
     imprint_title = request.GET.get('imprint_title')
     imprint_short_title = request.GET.get('imprint_short_title')
     imprint_notes = request.GET.get('imprint_notes')
+    news_cite = request.GET.get('news_cite')
+    news_cite_title = request.GET.get('news_cite_title')
+    news_cite_notes = request.GET.get('news_cite_notes')
+    news_hist = request.GET.get('news_hist')
+    news_hist_gtitle = request.GET.get('news_hist_gtitle')
+    news_hist_notes = request.GET.get('news_hist_notes')
     url_query_string = request.GET.urlencode()
 
     results = []
@@ -103,15 +109,18 @@ def searchFieldsView(request):
         if biography_func:
             qList_bios.append(Q(function__icontains=query_text))
 
-        query = qList_bios.pop()
+        try:
+            query = qList_bios.pop()
 
-        for item in qList_bios:
-            query |= item
+            for item in qList_bios:
+                query |= item
 
-        bios = Biography.objects.filter(query)
+            bios = Biography.objects.filter(query)
 
-        for bio in bios:
-            results.append(GenericSearchResult(bio, 1))
+            for bio in bios:
+                results.append(GenericSearchResult(bio, 1))
+        except IndexError:
+            pass
     if imprint:
         qList_imprints = []
 
@@ -122,15 +131,58 @@ def searchFieldsView(request):
         if imprint_notes:
             qList_imprints.append(Q(notes__icontains=query_text))
 
-        query = qList_imprints.pop()
+        try:
+            query = qList_imprints.pop()
 
-        for item in qList_imprints:
-            query |= item
+            for item in qList_imprints:
+                query |= item
 
-        imprints = ImprintRecord.objects.filter(query)
+            imprints = ImprintRecord.objects.filter(query)
 
-        for imprint in imprints:
-            results.append(GenericSearchResult(imprint, 1))
+            for imprint in imprints:
+                results.append(GenericSearchResult(imprint, 1))
+        except IndexError:
+            pass
+    if news_cite:
+        qList_news_cite = []
+
+        if news_cite_title:
+            qList_news_cite.append(Q(title__icontains=query_text))
+        if news_cite_notes:
+            qList_news_cite.append(Q(notes__icontains=query_text))
+
+        try:
+            query = qList_news_cite.pop()
+
+            for item in qList_news_cite:
+                query |= item
+
+            news_cites = NewspaperCitation.objects.filter(query)
+
+            for news_cite in news_cites:
+                results.append(GenericSearchResult(news_cite, 1))
+        except IndexError:
+            pass
+    if news_hist:
+        qList_news_hist = []
+
+        if news_hist_gtitle:
+            qList_news_hist.append(Q(group_title__icontains=query_text))
+        if news_hist_notes:
+            qList_news_hist.append(Q(notes__icontains=query_text))
+
+        try:
+            query = qList_news_hist.pop()
+
+            for item in qList_news_hist:
+                query |= item
+
+            news_hists = NewspaperHistory.objects.filter(query)
+
+            for news_hist in news_hists:
+                results.append(GenericSearchResult(news_hist, 1))
+        except IndexError:
+            pass
 
     paginator = Paginator(results, 5)
     try:
@@ -149,12 +201,12 @@ def searchFieldsView(request):
                'imprint_title': imprint_title,
                'imprint_short_title': imprint_short_title,
                'imprint_notes': imprint_notes,
-               'news_cite': True,
-               'news_cite_title': True,
-               'news_cite_notes': True,
-               'news_hist': True,
-               'news_hist_group_title': True,
-               'news_hist_notes': True,
+               'news_cite': news_cite,
+               'news_cite_title': news_cite_title,
+               'news_cite_notes': news_cite_notes,
+               'news_hist': news_hist,
+               'news_hist_group_title': news_hist_gtitle,
+               'news_hist_notes': news_hist_notes,
                'num_results': results.__len__}
 
     return render(request, 'VirginiaPrinting/search_results.html', context)

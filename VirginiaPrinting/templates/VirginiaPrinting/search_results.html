@@ -105,11 +105,11 @@
         <ul>
             <li>
                 <input type="checkbox"
-                       id="imprint"
+                       id="imprints"
                        value="imprint"
                        name="imprint"
                        {% if imprint %}checked{% endif %}>
-                <label for="imprint">Imprint Records</label>
+                <label for="imprints">Imprint Records</label>
                 <ul>
                     <li><label><input type="checkbox"
                                       id="imprint_title"
@@ -142,10 +142,29 @@
     <div class="container">
         <ul>
             <li>
-                <input type="checkbox" id="news_cites"><label for="news_cites">Newspaper Citations</label>
+                <input type="checkbox"
+                       id="news_cites"
+                       name="news_cite"
+                       value="news_cite"
+                       {% if news_cite %}checked{% endif %}>
+                <label for="news_cites">Newspaper Citations</label>
                 <ul>
-                    <li><label><input type="checkbox" class="suboption_news_cites">Title</label></li>
-                    <li><label><input type="checkbox" class="suboption_news_cites">Notes</label></li>
+                    <li><label><input type="checkbox"
+                                      id="news_cite_title"
+                                      class="suboption_news_cites"
+                                      value="news_cite_title"
+                                      name="news_cite_title"
+                                      {% if news_cite_title %}checked{% endif %}>
+                        Title
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="news_cite_notes"
+                                      class="suboption_news_cites"
+                                      value="news_cite_notes"
+                                      name="news_cite_notes"
+                                      {% if news_cite_notes %}checked{% endif %}>
+                        Notes
+                    </label></li>
                 </ul>
             </li>
         </ul>
@@ -153,10 +172,29 @@
     <div class="container">
         <ul>
             <li>
-                <input type="checkbox" id="news_hists"><label for="news_hists">Newspaper Histories</label>
+                <input type="checkbox"
+                       id="news_hists"
+                       name="news_hist"
+                       value="news_hist"
+                       {% if news_hist %}checked{% endif %}>
+                <label for="news_hists">Newspaper Histories</label>
                 <ul>
-                    <li><label><input type="checkbox" class="suboption_news_hists">Group Title</label></li>
-                    <li><label><input type="checkbox" class="suboption_news_hists">Notes</label></li>
+                    <li><label><input type="checkbox"
+                                      id="news_hist_gtitle"
+                                      class="suboption_news_hists"
+                                      name="news_hist_gtitle"
+                                      value="news_hist_gtitle"
+                                      {% if news_hist_group_title %}checked{% endif %}>
+                        Group Title
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="news_hist_notes"
+                                      class="suboption_news_hists"
+                                      name="news_hist_notes"
+                                      value="news_hist_notes"
+                                      {% if news_hist_notes %}checked{% endif %}>
+                        Notes
+                    </label></li>
                 </ul>
             </li>
         </ul>
