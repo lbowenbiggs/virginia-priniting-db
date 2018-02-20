@@ -92,6 +92,11 @@ def searchFieldsView(request):
     imprint_title = request.GET.get('imprint_title')
     imprint_short_title = request.GET.get('imprint_short_title')
     imprint_notes = request.GET.get('imprint_notes')
+    imprint_year = request.GET.get('imprint_year')
+    imprint_author = request.GET.get('imprint_author')
+    imprint_place = request.GET.get('imprint_place')
+    imprint_press = request.GET.get('imprint_press')
+    imprint_description = request.GET.get('imprint_desc')
     news_cite = request.GET.get('news_cite')
     news_cite_title = request.GET.get('news_cite_title')
     news_cite_notes = request.GET.get('news_cite_notes')
@@ -139,6 +144,16 @@ def searchFieldsView(request):
             qList_imprints.append(Q(short_title__search=query_text))
         if imprint_notes:
             qList_imprints.append(Q(notes__search=query_text))
+        if imprint_year:
+            qList_imprints.append(Q(year__in=query_text.split()))
+        if imprint_author:
+            qList_imprints.append(Q(author__search=query_text))
+        if imprint_place:
+            qList_imprints.append(Q(place_issued__search=query_text))
+        if imprint_press:
+            qList_imprints.append(Q(issuing_press__search=query_text))
+        if imprint_description:
+            qList_imprints.append(Q(description__search=query_text))
 
         try:
             query = qList_imprints.pop()
@@ -213,6 +228,11 @@ def searchFieldsView(request):
                'imprint_title': imprint_title,
                'imprint_short_title': imprint_short_title,
                'imprint_notes': imprint_notes,
+               'imprint_year': imprint_year,
+               'imprint_author': imprint_author,
+               'imprint_place': imprint_place,
+               'imprint_press': imprint_press,
+               'imprint_desc': imprint_description,
                'news_cite': news_cite,
                'news_cite_title': news_cite_title,
                'news_cite_notes': news_cite_notes,
