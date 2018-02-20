@@ -97,6 +97,30 @@
                                       {% if biography_func %}checked{% endif %}>
                         Function
                     </label></li>
+                    <li><label><input type="checkbox"
+                                      id="bio_fname"
+                                      class="suboption_bios"
+                                      value="formal_name"
+                                      name="bio_fname"
+                                      {% if biography_fname %}checked{% endif %}>
+                        Formal Name
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="bio_locales"
+                                      class="suboption_bios"
+                                      value="locales"
+                                      name="bio_locales"
+                                      {% if biography_locales %}checked{% endif %}>
+                        Locales
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="bio_precis"
+                                      class="suboption_bios"
+                                      value="precis"
+                                      name="bio_precis"
+                                      {% if biography_precis %}checked{% endif %}>
+                        Precis
+                    </label></li>
                 </ul>
             </li>
         </ul>

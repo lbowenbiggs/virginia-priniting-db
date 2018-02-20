@@ -85,6 +85,9 @@ def searchFieldsView(request):
     biography_name = request.GET.get('bio_name')
     biography_func = request.GET.get('bio_function')
     biography_note = request.GET.get('bio_notes')
+    biography_formal_name = request.GET.get('bio_fname')
+    biography_locales = request.GET.get('bio_locales')
+    biography_precis = request.GET.get('bio_precis')
     imprint = request.GET.get('imprint')
     imprint_title = request.GET.get('imprint_title')
     imprint_short_title = request.GET.get('imprint_short_title')
@@ -108,6 +111,12 @@ def searchFieldsView(request):
             qList_bios.append(Q(notes__search=query_text))
         if biography_func:
             qList_bios.append(Q(function__search=query_text))
+        if biography_formal_name:
+            qList_bios.append(Q(formal_name__search=query_text))
+        if biography_locales:
+            qList_bios.append(Q(locales__search=query_text))
+        if biography_precis:
+            qList_bios.append(Q(precis__search=query_text))
 
         try:
             query = qList_bios.pop()
@@ -196,6 +205,9 @@ def searchFieldsView(request):
                'biography_name': biography_name,
                'biography_func': biography_func,
                'biography_note': biography_note,
+               'biography_fname': biography_formal_name,
+               'biography_locales': biography_locales,
+               'biography_precis': biography_precis,
                'url_query_string': url_query_string,
                'imprint': imprint,
                'imprint_title': imprint_title,
