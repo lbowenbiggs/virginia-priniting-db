@@ -159,6 +159,46 @@
                                       {% if imprint_notes %}checked{% endif %}>
                         Notes
                     </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_year"
+                                      class="suboption_imprints"
+                                      value="year"
+                                      name="imprint_year"
+                                      {% if imprint_year %}checked{% endif %}>
+                        Year
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_author"
+                                      class="suboption_imprints"
+                                      value="author"
+                                      name="imprint_author"
+                                      {% if imprint_author %}checked{% endif %}>
+                        Author
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_place"
+                                      class="suboption_imprints"
+                                      value="place"
+                                      name="imprint_place"
+                                      {% if imprint_place %}checked{% endif %}>
+                        Place Issued
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_press"
+                                      class="suboption_imprints"
+                                      value="press"
+                                      name="imprint_press"
+                                      {% if imprint_press %}checked{% endif %}>
+                        Issuing Press
+                    </label></li>
+                    <li><label><input type="checkbox"
+                                      id="imprint_desc"
+                                      class="suboption_imprints"
+                                      value="desc"
+                                      name="imprint_desc"
+                                      {% if imprint_desc %}checked{% endif %}>
+                        Description
+                    </label></li>
                 </ul>
             </li>
         </ul>
