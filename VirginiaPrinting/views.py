@@ -31,15 +31,15 @@ def searchView(request):
     query_text = request.GET.get('search_term')
     url_query_string = request.GET.urlencode()
 
-    bios = Biography.objects.filter(Q(name__icontains=query_text) |
-                                    Q(notes__icontains=query_text))
-    imprints = ImprintRecord.objects.filter(Q(title__icontains=query_text) |
-                                            Q(short_title__icontains=query_text) |
-                                            Q(notes__icontains=query_text))
-    news_cites = NewspaperCitation.objects.filter(Q(title__icontains=query_text) |
-                                                  Q(notes__icontains=query_text))
-    news_hists = NewspaperHistory.objects.filter(Q(group_title__icontains=query_text) |
-                                                 Q(notes__icontains=query_text))
+    bios = Biography.objects.filter(Q(name__search=query_text) |
+                                    Q(notes__search=query_text))
+    imprints = ImprintRecord.objects.filter(Q(title__search=query_text) |
+                                            Q(short_title__search=query_text) |
+                                            Q(notes__search=query_text))
+    news_cites = NewspaperCitation.objects.filter(Q(title__search=query_text) |
+                                                  Q(notes__search=query_text))
+    news_hists = NewspaperHistory.objects.filter(Q(group_title__search=query_text) |
+                                                 Q(notes__search=query_text))
 
     results = []
     for bio in bios:
@@ -103,11 +103,11 @@ def searchFieldsView(request):
         qList_bios = []
 
         if biography_name:
-            qList_bios.append(Q(name__icontains=query_text))
+            qList_bios.append(Q(name__search=query_text))
         if biography_note:
-            qList_bios.append(Q(notes__icontains=query_text))
+            qList_bios.append(Q(notes__search=query_text))
         if biography_func:
-            qList_bios.append(Q(function__icontains=query_text))
+            qList_bios.append(Q(function__search=query_text))
 
         try:
             query = qList_bios.pop()
@@ -125,11 +125,11 @@ def searchFieldsView(request):
         qList_imprints = []
 
         if imprint_title:
-            qList_imprints.append(Q(title__icontains=query_text))
+            qList_imprints.append(Q(title__search=query_text))
         if imprint_short_title:
-            qList_imprints.append(Q(short_title__icontains=query_text))
+            qList_imprints.append(Q(short_title__search=query_text))
         if imprint_notes:
-            qList_imprints.append(Q(notes__icontains=query_text))
+            qList_imprints.append(Q(notes__search=query_text))
 
         try:
             query = qList_imprints.pop()
@@ -147,9 +147,9 @@ def searchFieldsView(request):
         qList_news_cite = []
 
         if news_cite_title:
-            qList_news_cite.append(Q(title__icontains=query_text))
+            qList_news_cite.append(Q(title__search=query_text))
         if news_cite_notes:
-            qList_news_cite.append(Q(notes__icontains=query_text))
+            qList_news_cite.append(Q(notes__search=query_text))
 
         try:
             query = qList_news_cite.pop()
@@ -167,9 +167,9 @@ def searchFieldsView(request):
         qList_news_hist = []
 
         if news_hist_gtitle:
-            qList_news_hist.append(Q(group_title__icontains=query_text))
+            qList_news_hist.append(Q(group_title__search=query_text))
         if news_hist_notes:
-            qList_news_hist.append(Q(notes__icontains=query_text))
+            qList_news_hist.append(Q(notes__search=query_text))
 
         try:
             query = qList_news_hist.pop()
