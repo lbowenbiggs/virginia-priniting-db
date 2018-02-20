@@ -64,7 +64,7 @@
 <h3>Refine Search</h3>
 <form action="{% url 'VPDB:field_search' %}" method="get" name="refine_search">
     <div class="container">
-        <ul>
+        <ul class="no-decorate">
             <li>
                 <input type="checkbox"
                        id="biographies"
@@ -72,7 +72,7 @@
                        name="bio"
                        {% if biography %}checked{% endif %}>
                 <label for="biographies">Biographies</label>
-                <ul>
+                <ul class="no-decorate">
                     <li><label><input type="checkbox"
                                       id="bio_name"
                                       class="suboption_bios"
@@ -102,7 +102,7 @@
         </ul>
     </div>
     <div class="container">
-        <ul>
+        <ul class="no-decorate">
             <li>
                 <input type="checkbox"
                        id="imprints"
@@ -110,7 +110,7 @@
                        name="imprint"
                        {% if imprint %}checked{% endif %}>
                 <label for="imprints">Imprint Records</label>
-                <ul>
+                <ul class="no-decorate">
                     <li><label><input type="checkbox"
                                       id="imprint_title"
                                       class="suboption_imprints"
@@ -140,7 +140,7 @@
         </ul>
     </div>
     <div class="container">
-        <ul>
+        <ul class="no-decorate">
             <li>
                 <input type="checkbox"
                        id="news_cites"
@@ -148,7 +148,7 @@
                        value="news_cite"
                        {% if news_cite %}checked{% endif %}>
                 <label for="news_cites">Newspaper Citations</label>
-                <ul>
+                <ul class="no-decorate">
                     <li><label><input type="checkbox"
                                       id="news_cite_title"
                                       class="suboption_news_cites"
@@ -170,7 +170,7 @@
         </ul>
     </div>
     <div class="container">
-        <ul>
+        <ul class="no-decorate">
             <li>
                 <input type="checkbox"
                        id="news_hists"
@@ -178,7 +178,7 @@
                        value="news_hist"
                        {% if news_hist %}checked{% endif %}>
                 <label for="news_hists">Newspaper Histories</label>
-                <ul>
+                <ul class="no-decorate">
                     <li><label><input type="checkbox"
                                       id="news_hist_gtitle"
                                       class="suboption_news_hists"

@@ -116,7 +116,7 @@ h3 {
 
 }
 
-.container > ul {
+.no-decorate {
     list-style: none;
 }
 
