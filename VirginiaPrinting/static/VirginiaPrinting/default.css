@@ -71,7 +71,7 @@ h3 {
 
 .index-text{
     font-size: 1.2em;
-    text-align: center;
+    text-align: left;
 }
 
 .list-text{
@@ -116,6 +116,10 @@ h3 {
 
 }
 
-ul {
+.container > ul {
     list-style: none;
+}
+
+.index-descr > li {
+    font-weight: bold;
 }

@@ -59,24 +59,49 @@
   </header>
   <main class="mdl-layout__content">
        <div class="page-content">
+           <br>
            <span class="index-text">
-               <br>
-               <br>
-               This Index offers updated and updateable descriptions of the people, imprints, and journals that were a part of Virginia's print trade from its first offering in 1682 through those produced for the 1820 General Assembly. And as such it represents one approach to the future of scholarly reference works, particularly ones with a bibliographic or biographic focus.
-               <br>
-               <br>
-               This resource is comprised of three elements:
-               <span class="list-text">
-               <li>The first is a series of short biographies for each of the <a href="{% url 'VPDB:bios_index' %}">{{ num_bios }} individuals</a> known to have worked in the trade, whether as tradesmen, editors, or publishers.</li>
-               <br>
-               <li>The second element offers a bibliographic record for each of the <a href="{% url 'VPDB:imprints_index' %}">{{ num_imprints }} imprint documents</a> produced in Virginia from 1730 to 1820, complete with cross-references to the standard bibliographies of early American imprints.</li>
-               <br>
-               <li>The third element is a collection of narrative histories for each of the <a href="{% url 'VPDB:news_hists_index' %}">{{ num_news_hists }} newspapers.</a> that were started in Virginia before 1820, covering their evolution and various incarnations, so encompassing <a href="{% url 'VPDB:news_cites_index' %}">{{ num_news_cites }} individual titles</a>.</li>
-               <br>
-               </span>
-               Using this site's search capabilities, this Index allows researchers to better situate all three components of the printing trade in their own investigations into Virginia's history.</span>
-           <br>
-           <br>
+               <p>
+                   This <i>Index of Virginia Printing</i> offers updated and updateable descriptions of the people, imprints,
+                   and journals that were a part of Virginia's print trade from its first offering in 1682 through those
+                   produced for the 1820 General Assembly. And as such it represents a workable approach to the future
+                   of scholarly reference works, particularly ones with a bibliographic or biographic focus.
+               </p>
+               <p>
+                   This resource is comprised of three elements:
+               </p>
+                   <ul class="index-descr">
+                       <li>Biographical Directory of the Virginia Printing Trade to 1820</li>
+                       <p>
+                           A series of short sketches of the <a href="{% url 'VPDB:bios_index' %}">{{ num_bios }} individuals</a> involved in the print trade from 1683
+                           through 1820. The people depicted were employed in the trade functions of printer, publisher,
+                           editor, bookbinder, bookseller, librarian, plate engraver, and plate printer, as well as many
+                           apprentices to those roles. Authors and corporate groups were not included unless they could
+                           also be identified as a publisher or editor in Virginia.
+                       </p>
+                       <li>Trial Catalogue of Imprints produced in Virginia through 1820</li>
+                       <p>
+                           A collection of itemized records for the <a href="{% url 'VPDB:imprints_index' %}">{{ num_imprints }} imprints</a> known to have been published in
+                           Virginia between 1730 and 1820, including those ordered printed by the 1820 Assembly. Each
+                           record covers the standard information seen in all such bibliographic records, with the
+                           addition of notes on its production context and links to the trade-people associated with
+                           that title, as well as any entry number for that item in the published bibliographies of
+                           American printing.
+                       </p>
+                       <li>Narrative Histories of Virginia Newspapers issued through 1820</li>
+                       <p>
+                           A series of narrative accounts of the birth, life, and death of each of the <a href="{% url 'VPDB:news_hists_index' %}">{{ num_news_hists }} newspapers</a>
+                           issued in Virginia before 1821. These histories are essentially genealogies which pull
+                           together all of the title variations for each journal into one lineage, tracing the changes
+                           in its ownership and the reasons for the changes, as well as the larger context in which that
+                           periodical appeared. This collection covers just over <a href="{% url 'VPDB:news_cites_index' %}">{{ num_news_cites }} distinct titles</a> in those lineages.
+                       </p>
+                   </ul>
+               <p>
+                   Using this site's search capabilities, this Index allows researchers to better situate all three
+                   components of the printing trade in their own investigations into Virginia's history.
+               </p>
+           </span>
            <span class="search-format">
       <form action="{% url 'VPDB:search' %}" method="get" id="search">
             <div class="mdl-textfield mdl-js-textfield">
