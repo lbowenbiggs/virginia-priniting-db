@@ -1,6 +1,13 @@
 MIT License
 
-Copyright (c) 2017 Leo Bowen-Biggs
+Copyright (c) 2017 Leo Bowen-Biggs & Courtney Davis
+
+This website software is available under the MIT License. However, the website
+content is Copyright Dr. David Rawson under the CC BY-NC-ND 4.0. The following
+directories contain the intellectual property of David Rawson and is explicitly
+excluded from the "the software" for the purposes of the MIT Licence:
+    - /VirginiaPrinting/static/VirginiaPrinting/records
+    - /VirginiaPrinting/static/VirginiaPrinting/refs
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
